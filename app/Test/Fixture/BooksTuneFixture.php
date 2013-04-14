@@ -1,9 +1,9 @@
 <?php
 /**
- * TuneFixture
+ * BooksTuneFixture
  *
  */
-class TuneFixture extends CakeTestFixture {
+class BooksTuneFixture extends CakeTestFixture {
 
 /**
  * Fields
@@ -12,9 +12,8 @@ class TuneFixture extends CakeTestFixture {
  */
 	public $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'key' => 'primary'),
-		'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
-		'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
-		'name' => array('type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
+		'book_id' => array('type' => 'integer', 'null' => false, 'default' => null),
+		'tune_id' => array('type' => 'integer', 'null' => false, 'default' => null),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1)
 		),
@@ -29,9 +28,8 @@ class TuneFixture extends CakeTestFixture {
 	public $records = array(
 		array(
 			'id' => 1,
-			'created' => '2013-04-14 22:54:43',
-			'modified' => '2013-04-14 22:54:43',
-			'name' => 'Lorem ipsum dolor sit amet'
+			'book_id' => 1,
+			'tune_id' => 1
 		),
 	);
 

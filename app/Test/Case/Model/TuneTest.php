@@ -1,6 +1,5 @@
 <?php
 App::uses('Tune', 'Model');
-App::uses('TuneFixture', 'Fixture');
 
 /**
  * Tune Test Case
@@ -14,7 +13,10 @@ class TuneTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.tune'
+		'app.tune',
+		'app.sample',
+		'app.book',
+		'app.books_tune'
 	);
 
 /**

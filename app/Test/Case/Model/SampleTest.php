@@ -1,11 +1,11 @@
 <?php
-App::uses('Book', 'Model');
+App::uses('Sample', 'Model');
 
 /**
- * Book Test Case
+ * Sample Test Case
  *
  */
-class BookTest extends CakeTestCase {
+class SampleTest extends CakeTestCase {
 
 /**
  * Fixtures
@@ -13,9 +13,8 @@ class BookTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.book',
-		'app.tune',
-		'app.books_tune'
+		'app.sample',
+		'app.tune'
 	);
 
 /**
@@ -25,7 +24,7 @@ class BookTest extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
-		$this->Book = ClassRegistry::init('Book');
+		$this->Sample = ClassRegistry::init('Sample');
 	}
 
 /**
@@ -34,7 +33,7 @@ class BookTest extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		unset($this->Book);
+		unset($this->Sample);
 
 		parent::tearDown();
 	}
