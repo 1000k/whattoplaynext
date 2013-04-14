@@ -26,35 +26,10 @@ class TunesControllerTest extends ControllerTestCase {
 	}
 
 /**
- * testView method
- *
- * @return void
+ * @covers Tune::next
  */
-	public function testView() {
-	}
-
-/**
- * testAdd method
- *
- * @return void
- */
-	public function testAdd() {
-	}
-
-/**
- * testEdit method
- *
- * @return void
- */
-	public function testEdit() {
-	}
-
-/**
- * testDelete method
- *
- * @return void
- */
-	public function testDelete() {
+	public function testNext() {
+		$this->markTestIncomplete();
 	}
 
 }

@@ -1,5 +1,6 @@
 <?php
 App::uses('Tune', 'Model');
+App::uses('TuneFixture', 'Fixture');
 
 /**
  * Tune Test Case
@@ -41,7 +42,13 @@ class TuneTest extends CakeTestCase {
  * @covers Tune::random
  */
 	public function testRandom() {
-		$this->markTestIncomplete();
+		$tuneFixture = new TuneFixture();
+		$tunes = $tuneFixture->records;
+
+		$id = $this->Tune->random();
+
+		$this->assertGreaterThan(0, $id);
+		$this->assertLessThanOrEqual(count($tunes), $id);
 	}
 
 }
