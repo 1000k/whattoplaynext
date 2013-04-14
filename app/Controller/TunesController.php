@@ -12,10 +12,10 @@ class TunesController extends AppController {
  *
  * @return void
  */
-	public function index() {
-		$this->Tune->recursive = 0;
-		$this->set('tunes', $this->paginate());
-	}
+	// public function index() {
+	// 	$this->Tune->recursive = 0;
+	// 	$this->set('tunes', $this->paginate());
+	// }
 
 /**
  * view method
@@ -37,17 +37,17 @@ class TunesController extends AppController {
  *
  * @return void
  */
-	public function add() {
-		if ($this->request->is('post')) {
-			$this->Tune->create();
-			if ($this->Tune->save($this->request->data)) {
-				$this->Session->setFlash(__('The tune has been saved'));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The tune could not be saved. Please, try again.'));
-			}
-		}
-	}
+	// public function add() {
+	// 	if ($this->request->is('post')) {
+	// 		$this->Tune->create();
+	// 		if ($this->Tune->save($this->request->data)) {
+	// 			$this->Session->setFlash(__('The tune has been saved'));
+	// 			$this->redirect(array('action' => 'index'));
+	// 		} else {
+	// 			$this->Session->setFlash(__('The tune could not be saved. Please, try again.'));
+	// 		}
+	// 	}
+	// }
 
 /**
  * edit method
@@ -56,22 +56,22 @@ class TunesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
-		if (!$this->Tune->exists($id)) {
-			throw new NotFoundException(__('Invalid tune'));
-		}
-		if ($this->request->is('post') || $this->request->is('put')) {
-			if ($this->Tune->save($this->request->data)) {
-				$this->Session->setFlash(__('The tune has been saved'));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The tune could not be saved. Please, try again.'));
-			}
-		} else {
-			$options = array('conditions' => array('Tune.' . $this->Tune->primaryKey => $id));
-			$this->request->data = $this->Tune->find('first', $options);
-		}
-	}
+	// public function edit($id = null) {
+	// 	if (!$this->Tune->exists($id)) {
+	// 		throw new NotFoundException(__('Invalid tune'));
+	// 	}
+	// 	if ($this->request->is('post') || $this->request->is('put')) {
+	// 		if ($this->Tune->save($this->request->data)) {
+	// 			$this->Session->setFlash(__('The tune has been saved'));
+	// 			$this->redirect(array('action' => 'index'));
+	// 		} else {
+	// 			$this->Session->setFlash(__('The tune could not be saved. Please, try again.'));
+	// 		}
+	// 	} else {
+	// 		$options = array('conditions' => array('Tune.' . $this->Tune->primaryKey => $id));
+	// 		$this->request->data = $this->Tune->find('first', $options);
+	// 	}
+	// }
 
 /**
  * delete method

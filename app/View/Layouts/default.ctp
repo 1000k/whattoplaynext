@@ -48,7 +48,7 @@
 		<?= $this->fetch('content'); ?>
 	</div>
 
-	<footer>
+	<footer class="footer">
 		<div class="container">
 			<p>&copy; What Play Next? / 次なにやる？</p>
 		</div>
