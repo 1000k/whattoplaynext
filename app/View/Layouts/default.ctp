@@ -28,21 +28,13 @@
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
-
 		echo $this->Html->css(['bootstrap.min', 'bootstrap-responsive.min']);
-
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
 </head>
 <body>
-	<div class="navbar navbar-inverse">
-		<div class="navbar-inner">
-			<?= $this->Html->link('次なにやる？', '/', ['class' => 'brand']); ?>
-		</div>
-	</div>
-
 	<div class="container">
 		<?= $this->Session->flash(); ?>
 		<?= $this->fetch('content'); ?>
