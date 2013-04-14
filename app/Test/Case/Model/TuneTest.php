@@ -37,4 +37,11 @@ class TuneTest extends CakeTestCase {
 		parent::tearDown();
 	}
 
+/**
+ * @covers Tune::random
+ */
+	public function testRandom() {
+		$this->markTestIncomplete();
+	}
+
 }

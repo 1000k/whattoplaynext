@@ -30,4 +30,10 @@ class Tune extends AppModel {
 			),
 		),
 	);
+
+	public function random() {
+		$max = $this->query('SELECT MAX(*) FROM tunes;');
+		debug($max);
+		return rand(1, $max[0]);
+	}
 }
