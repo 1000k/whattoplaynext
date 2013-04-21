@@ -2,9 +2,6 @@
 	<h1><?= $tune['Tune']['name'] ?></h1>
 </header>
 
-<h2>こんな曲です</h2>
-<p>(coming soon)</p>
-
 <h2>載ってます</h2>
 <ul class="thumbnails">
 <?php foreach($tune['Book'] as $book): ?>
@@ -16,5 +13,8 @@
 	</li>
 <?php endforeach; ?>
 </ul>
+
+<h2>こんな曲です</h2>
+<p>(coming soon)</p>
 
 <?= $this->element('btn_whatplaynext') ?>
