@@ -73,26 +73,26 @@ class TunesController extends AppController {
 	// 	}
 	// }
 
-/**
- * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	public function delete($id = null) {
-		$this->Tune->id = $id;
-		if (!$this->Tune->exists()) {
-			throw new NotFoundException(__('Invalid tune'));
-		}
-		$this->request->onlyAllow('post', 'delete');
-		if ($this->Tune->delete()) {
-			$this->Session->setFlash(__('Tune deleted'));
-			$this->redirect(array('action' => 'index'));
-		}
-		$this->Session->setFlash(__('Tune was not deleted'));
-		$this->redirect(array('action' => 'index'));
-	}
+// /**
+//  * delete method
+//  *
+//  * @throws NotFoundException
+//  * @param string $id
+//  * @return void
+//  */
+// 	public function delete($id = null) {
+// 		$this->Tune->id = $id;
+// 		if (!$this->Tune->exists()) {
+// 			throw new NotFoundException(__('Invalid tune'));
+// 		}
+// 		$this->request->onlyAllow('post', 'delete');
+// 		if ($this->Tune->delete()) {
+// 			$this->Session->setFlash(__('Tune deleted'));
+// 			$this->redirect(array('action' => 'index'));
+// 		}
+// 		$this->Session->setFlash(__('Tune was not deleted'));
+// 		$this->redirect(array('action' => 'index'));
+// 	}
 
 	public function next() {
 		return $this->redirect(['controller' => 'tunes', 'action' => 'view', $this->Tune->random()]);
