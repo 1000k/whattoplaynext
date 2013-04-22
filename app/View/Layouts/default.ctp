@@ -24,7 +24,7 @@
 	<?= $this->Html->charset(); ?>
 	<title>
 		What Play Next?
-		<?= $title_for_layout; ?>
+		<?= $title_for_layout ? ": {$title_for_layout}" : ''; ?>
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
@@ -34,22 +34,11 @@
 		echo $this->fetch('script');
 	?>
 	<style type="text/css">
-
       body {
         padding-top: 20px;
         padding-bottom: 40px;
       }
 
-      /* Custom container */
-      .container-narrow {
-        margin: 0 auto;
-        max-width: 700px;
-      }
-      .container-narrow > hr {
-        margin: 30px 0;
-      }
-
-      /* Main marketing message and sign up button */
       .jumbotron {
         margin: 60px 0;
         text-align: center;

@@ -31,8 +31,10 @@ class TunesController extends AppController {
 		$options = [
 			'conditions' => ['Tune.' . $this->Tune->primaryKey => $id]
 		];
+		$tune = $this->Tune->find('first', $options);
 		$this->set([
-			'tune' => $this->Tune->find('first', $options),
+			'tune' => $tune,
+			'title_for_layout' => $tune['Tune']['name']
 		]);
 	}
 

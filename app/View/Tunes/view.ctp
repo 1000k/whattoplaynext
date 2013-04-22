@@ -14,7 +14,4 @@
 <?php endforeach; ?>
 </ul>
 
-<h2>こんな曲です</h2>
-<p>(coming soon)</p>
-
 <?= $this->element('btn_whatplaynext') ?>
