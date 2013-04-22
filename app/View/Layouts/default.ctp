@@ -54,6 +54,10 @@
         margin: 60px 0;
         text-align: center;
       }
+      .jumbotron h1 {
+        font-size: 72px;
+        line-height: 1;
+      }
       .jumbotron .btn {
         font-size: 63px;
         padding: 52px 72px;

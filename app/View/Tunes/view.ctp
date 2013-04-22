@@ -1,4 +1,4 @@
-<header class="hero-unit">
+<header class="jumbotron">
 	<h1><?= $tune['Tune']['name'] ?></h1>
 </header>
 
