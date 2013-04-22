@@ -33,17 +33,46 @@
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
+	<style type="text/css">
+
+      body {
+        padding-top: 20px;
+        padding-bottom: 40px;
+      }
+
+      /* Custom container */
+      .container-narrow {
+        margin: 0 auto;
+        max-width: 700px;
+      }
+      .container-narrow > hr {
+        margin: 30px 0;
+      }
+
+      /* Main marketing message and sign up button */
+      .jumbotron {
+        margin: 60px 0;
+        text-align: center;
+      }
+      .jumbotron .btn {
+        font-size: 63px;
+        padding: 52px 72px;
+      }
+      .credit {
+        text-align: center;
+      }
+    </style>
 </head>
 <body>
 	<div class="container">
 		<?= $this->Session->flash(); ?>
 		<?= $this->fetch('content'); ?>
-	</div>
 
-	<footer class="footer">
-		<div class="container">
-			<p>&copy; What Play Next? / 次なにやる？</p>
-		</div>
-	</footer>
+		<hr>
+
+		<footer class="footer">
+			<p class="credit">&copy; <?= $this->Html->link('What Play Next? / 次なにやる？', '/') ?></p>
+		</footer>
+	</div>
 </body>
 </html>
