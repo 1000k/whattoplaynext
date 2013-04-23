@@ -14,15 +14,6 @@
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
-	<style>
-	body {
-		background: #000 url(<?= IMAGES_URL ?>/bg_home.jpg) no-repeat center center fixed;
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		-o-background-size: cover;
-		background-size: cover;
-	}
-	</style>
 	<script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -33,7 +24,11 @@ ga('create', 'UA-40337964-1', 'cloudapp.net');
 ga('send', 'pageview');
 	</script>
 </head>
+<?php if (Router::url() === '/'): ?>
+<body id="home">
+<?php else: ?>
 <body>
+<?php endif; ?>
 	<div class="container">
 		<article>
 			<?= $this->Session->flash(); ?>

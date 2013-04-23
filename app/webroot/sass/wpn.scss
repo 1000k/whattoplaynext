@@ -3,10 +3,11 @@
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
+@import "compass/css3/background-size";
 @import "compass/reset";
-@import "compass/utilities/general/clearfix";
 @import "compass/typography/links/link-colors";
 @import "compass/typography/vertical_rhythm";
+@import "compass/utilities/general/clearfix";
 
 @import "_variables.scss";
 @import "_mixins.scss";
@@ -33,6 +34,11 @@ body {
 	color: $base-text-color;
 	background: $base-background-color;
 	font-family: $base-font-family;
+
+	&#home {
+		background: #000 url(../img/bg_home.jpg) no-repeat center center fixed;
+		@include background-size(cover);
+	}
 }
 
 footer {
@@ -54,8 +60,6 @@ a {
 	height: auto !important;
 	height: 100%;
 	position: relative;
-
-	// padding-bottom: $base-font-size * 4;
 }
 
 section {
