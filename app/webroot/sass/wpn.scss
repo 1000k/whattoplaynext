@@ -1,0 +1,51 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+@import "compass/typography/links/link-colors";
+@import "compass/typography/vertical_rhythm";
+
+@import "_variables.scss";
+@import "_buttons.scss";
+
+/* -----------------------
+ * General Configurations
+ * -----------------------*/
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	color: $base-text-color;
+	background: $base-background-color;
+	font-family: $base-font-family;
+}
+
+footer {
+	position: absolute;
+	bottom: 0;
+	height: $base-font-size * 2;
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+}
+
+a {
+	@include link-colors($base-text-color-link-normal, $base-text-color-link-hover, $base-text-color-link-active, $base-text-color-link-visited, $base-text-color-link-focus);
+	text-decoration: none;
+}
+
+.container {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	position: relative;
+}

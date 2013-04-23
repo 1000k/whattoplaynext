@@ -1,0 +1,27 @@
+/**
+ * variables
+ */
+$base-font-size: 16px;
+$base-line-height: 24px;
+$base-font-family: "Helvetica Neue",Helvetica,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro W3",メイリオ,Meiryo,sans-serif;
+
+// Base colors
+// Color Scheme: http://colorschemedesigner.com/#1h31Tw0w0w0w0
+//---------------
+$base-background-color: #000;
+$base-text-color: #ddd;
+$base-text-color-link-normal: #4284D3;
+$base-text-color-link-hover: #5EA7FF;
+$base-text-color-link-active: #FA5EFF;
+$base-text-color-link-visited: $base-text-color-link-normal;
+$base-text-color-link-focus: $base-text-color-link-active;
+
+$btn-background-color: #4284D3;
+$btn-background-color-hover: #0E53A7;
+$btn-background-color-active: #8D41D6;
+$btn-text-color: #fff;
+// $btn-text-color-link-normal: #4284D3;
+// $btn-text-color-link-hover: #5EA7FF;
+// $btn-text-color-link-active: #FA5EFF;
+// $btn-text-color-link-visited: $btn-text-color-link-normal;
+// $btn-text-color-link-focus: $btn-text-color-link-active;
