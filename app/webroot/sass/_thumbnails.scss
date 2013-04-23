@@ -1,0 +1,16 @@
+/**
+ * Thumbnails
+ */
+@import "compass/css3";
+
+.thumbnails {
+	@include display-box;
+	@include box-align(stretch);
+	@include leader(1);
+	@include trailer(1);
+
+	.thumbnail {
+		@include box-flex(1);
+		padding: 0 $base-font-size;
+	}
+}

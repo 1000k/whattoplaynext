@@ -71,6 +71,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 /**
  * variables
  */
+/**
+ * Mixins
+ */
 /*
  * buttons
  */
@@ -103,43 +106,88 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 /* line 15, ../sass/_buttons.scss */
 .btn:hover {
-  background: #0e53a7;
+  background: #04346c;
   text-decoration: none;
 }
 /* line 20, ../sass/_buttons.scss */
 .btn:focus, .btn:active {
-  background: #8d41d6;
+  background: #5e0dac;
   outline: 0;
 }
 
 /* line 26, ../sass/_buttons.scss */
 .btn-wpn {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-left: -192px;
-  margin-top: -32px;
   font-size: 32px;
   line-height: 64px;
   width: 384px;
   height: 64px;
 }
 
+/* line 33, ../sass/_buttons.scss */
+.btn-block {
+  display: block;
+}
+
+/* line 37, ../sass/_buttons.scss */
+.btn-wpn-domannaka {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -192px;
+  margin-top: -64px;
+}
+
+/**
+ * Thumbnails
+ */
+/* line 6, ../sass/_thumbnails.scss */
+.thumbnails {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-align: stretch;
+  -moz-box-align: stretch;
+  -ms-box-align: stretch;
+  box-align: stretch;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+/* line 12, ../sass/_thumbnails.scss */
+.thumbnails .thumbnail {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+  padding: 0 16px;
+}
+
 /* -----------------------
  * General Configurations
  * -----------------------*/
-/* line 16, ../sass/wpn.scss */
+/* line 61, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/_vertical_rhythm.scss */
+* html {
+  font-size: 100%;
+}
+
+/* line 64, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/_vertical_rhythm.scss */
+html {
+  font-size: 16px;
+  line-height: 1.5em;
+}
+
+/* line 22, ../sass/wpn.scss */
 img {
   max-width: 100%;
   height: auto;
 }
 
-/* line 21, ../sass/wpn.scss */
+/* line 27, ../sass/wpn.scss */
 html {
   height: 100%;
 }
 
-/* line 25, ../sass/wpn.scss */
+/* line 31, ../sass/wpn.scss */
 body {
   height: 100%;
   color: #dddddd;
@@ -147,7 +195,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro W3", メイリオ, Meiryo, sans-serif;
 }
 
-/* line 32, ../sass/wpn.scss */
+/* line 38, ../sass/wpn.scss */
 footer {
   position: absolute;
   bottom: 0;
@@ -157,7 +205,7 @@ footer {
   margin: 0 auto;
 }
 
-/* line 41, ../sass/wpn.scss */
+/* line 47, ../sass/wpn.scss */
 a {
   color: #4284d3;
   text-decoration: none;
@@ -168,21 +216,69 @@ a:visited {
 }
 /* line 21, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
 a:focus {
-  color: #fa5eff;
+  color: #5e0dac;
 }
 /* line 24, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
 a:hover {
-  color: #5ea7ff;
+  color: #6899d3;
 }
 /* line 27, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
 a:active {
-  color: #fa5eff;
+  color: #5e0dac;
 }
 
-/* line 46, ../sass/wpn.scss */
+/* line 52, ../sass/wpn.scss */
 .container {
   min-height: 100%;
   height: auto !important;
   height: 100%;
   position: relative;
+  padding-bottom: 64px;
+}
+
+/* line 61, ../sass/wpn.scss */
+section {
+  padding-top: 6em;
+  padding-bottom: 6em;
+}
+
+/* line 66, ../sass/wpn.scss */
+.title {
+  color: #000;
+  background: #ffc700;
+  font-size: 96px;
+  line-height: 96px;
+  text-align: center;
+  word-wrap: break-word;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+}
+
+/* line 79, ../sass/wpn.scss */
+.published {
+  color: #dddddd;
+  background: #5e0dac;
+  text-align: center;
+}
+/* line 85, ../sass/wpn.scss */
+.published h2 {
+  font-size: 32px;
+}
+/* line 89, ../sass/wpn.scss */
+.published img {
+  display: block;
+  margin: 0 auto;
+}
+/* line 94, ../sass/wpn.scss */
+.published p {
+  text-align: center;
+}
+/* line 98, ../sass/wpn.scss */
+.published a {
+  color: #dddddd;
+}
+
+/* line 103, ../sass/wpn.scss */
+.centered {
+  margin: 0 auto;
 }
