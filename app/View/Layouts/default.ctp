@@ -14,6 +14,15 @@
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
+	<style>
+	body {
+		background: #000 url(<?= IMAGES_URL ?>/bg_home.jpg) no-repeat center center fixed;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+	}
+	</style>
 	<script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
