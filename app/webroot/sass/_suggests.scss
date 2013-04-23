@@ -1,0 +1,54 @@
+/**
+ * Suggests
+ * - components on 'tunes/view'
+ */
+
+$title-font-size-default: $base-font-size * 6;
+$title-font-size-smartphone: $base-font-size * 4;
+
+section {
+	@include padding-leader(4);
+	@include padding-trailer(4);
+}
+
+.title {
+	color: #000;
+	background: $primary-base;
+	
+	@include breakpoint(smartphone) {
+		font-size: $title-font-size-smartphone;
+		line-height: $title-font-size-smartphone;
+	}
+
+	font-size: $title-font-size-default;
+	line-height: $title-font-size-default;
+	text-align: center;
+	word-wrap: break-word;
+
+	@include padding-leader;
+	@include padding-trailer;
+}
+
+.published {
+	color: $base-text-color;
+	background: $secondary-a-base;
+
+	text-align: center;
+
+	h2 {
+		font-size: $base-font-size * 2;
+	}
+
+	img {
+		display: block;
+		margin: 0 auto;
+	}
+
+	p {
+		text-align: center;
+	}
+
+	a {
+		color: $base-text-color;
+	}
+}

@@ -12,6 +12,7 @@
 @import "_variables.scss";
 @import "_mixins.scss";
 
+@import "_suggests.scss";
 @import "_buttons.scss";
 @import "_thumbnails.scss";
 
@@ -60,48 +61,6 @@ a {
 	height: auto !important;
 	height: 100%;
 	position: relative;
-}
-
-section {
-	@include padding-leader(4);
-	@include padding-trailer(4);
-}
-
-.title {
-	color: #000;
-	background: $primary-base;
-	
-	font-size: $base-font-size * 6;
-	line-height: $base-font-size * 6;
-	text-align: center;
-	word-wrap: break-word;
-
-	@include padding-leader;
-	@include padding-trailer;
-}
-
-.published {
-	color: $base-text-color;
-	background: $secondary-a-base;
-
-	text-align: center;
-
-	h2 {
-		font-size: $base-font-size * 2;
-	}
-
-	img {
-		display: block;
-		margin: 0 auto;
-	}
-
-	p {
-		text-align: center;
-	}
-
-	a {
-		color: $base-text-color;
-	}
 }
 
 .centered {
