@@ -1,3 +1,1 @@
-<header class="jumbotron">
-	<p><?= $this->element('btn_whatplaynext') ?></p>
-</header>
+<?= $this->Html->link('次なにやる？', '/next', ['class' => 'btn btn-wpn btn-wpn-domannaka']) ?>

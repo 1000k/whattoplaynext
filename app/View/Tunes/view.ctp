@@ -1,17 +1,20 @@
-<header class="jumbotron">
-	<h1><?= $tune['Tune']['name'] ?></h1>
-</header>
+<section class="title">
+	<?= $tune['Tune']['name'] ?>
+</section>
 
-<h2>載ってます</h2>
-<ul class="thumbnails">
-<?php foreach($tune['Book'] as $book): ?>
-	<li class="span4">
-		<div class="thumbnail">
+<section class="published">
+	<h2>載ってます</h2>
+
+	<ul class="thumbnails">
+	<?php foreach($tune['Book'] as $book): ?>
+		<li class="thumbnail">
 			<?= $this->Html->image("books/{$book['image_path']}", ['alt' => $book['name'], 'url' => $book['url_amazon']]) ?>
 			<p><?= $this->Html->link($book['name'], $book['url_amazon']) ?><img src="<?= $book['url_amazon_conversion_image'] ?>" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;"></p>
-		</div>
-	</li>
-<?php endforeach; ?>
-</ul>
+		</li>
+	<?php endforeach; ?>
+	</ul>
+</section>
 
-<?= $this->element('btn_whatplaynext') ?>
+<section>
+	<?= $this->Html->link('次なにやる？', '/next', ['class' => 'btn btn-wpn btn-block centered']) ?>
+</section>
