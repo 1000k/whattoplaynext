@@ -34,7 +34,7 @@ $base-background-color: #000;
 $base-text-color: #ddd;
 $base-text-color-link-normal: $secondary-b-base-brighter;
 $base-text-color-link-hover: $secondary-b-base-brightest;
-$base-text-color-link-active: $secondary-a-base;
+$base-text-color-link-active: $secondary-a-base-brighter;
 $base-text-color-link-visited: $base-text-color-link-normal;
 $base-text-color-link-focus: $base-text-color-link-active;
 
@@ -50,4 +50,4 @@ $btn-text-color: #fff;
 
 // Break points
 //---------------
-$breakpoint-smartphone: 320;
+$breakpoint-smartphone: 480;

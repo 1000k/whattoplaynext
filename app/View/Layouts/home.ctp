@@ -16,10 +16,12 @@
 	<?= $this->element('ga'); ?>
 </head>
 <body id="home">
-	<div class="container">
-		<?= $this->fetch('content'); ?>
-
-		<?= $this->element('footer') ?>
+	<div class="wrapper">
+		<div class="wrapper-inner">
+			<?= $this->element('btn_wpn') ?>
+		</div>
 	</div>
+
+	
 </body>
 </html>

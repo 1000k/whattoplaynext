@@ -3,8 +3,8 @@
  * - components on 'tunes/view'
  */
 
-$title-font-size-default: $base-font-size * 6;
-$title-font-size-smartphone: $base-font-size * 4;
+$title-font-size-desktop: $base-font-size * 6;
+$title-font-size-default: $base-font-size * 4;
 
 section {
 	@include padding-leader(4);
@@ -16,9 +16,12 @@ section {
 	background: $primary-base;
 	font-weight: bold;
 	
-	@include breakpoint(smartphone) {
-		font-size: $title-font-size-smartphone;
-		line-height: $title-font-size-smartphone;
+	font-size: $title-font-size-default;
+	line-height: $title-font-size-default;
+
+	@include breakpoint(desktop) {
+		font-size: $title-font-size-desktop;
+		line-height: $title-font-size-desktop;
 	}
 
 	font-size: $title-font-size-default;

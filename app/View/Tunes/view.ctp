@@ -15,6 +15,8 @@
 	</ul>
 </section>
 
-<section>
-	<?= $this->Html->link('次なにやる？', '/next', ['class' => 'btn btn-wpn btn-block centered']) ?>
+<section class="wrapper">
+	<div class="wrapper-inner">
+		<?= $this->element('btn_wpn') ?>
+	</div>
 </section>
