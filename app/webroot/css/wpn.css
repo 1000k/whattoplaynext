@@ -1,4 +1,4 @@
-@charset "Windows-31J";
+@charset "UTF-8";
 /* Welcome to Compass.
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
@@ -78,10 +78,10 @@ section {
   color: #000;
   background: #ffaa00;
   font-weight: bold;
-  font-size: 64px;
-  line-height: 64px;
-  font-size: 64px;
-  line-height: 64px;
+  font-size: 48px;
+  line-height: 48px;
+  font-size: 48px;
+  line-height: 48px;
   text-align: center;
   word-wrap: break-word;
   padding-top: 1.5em;
@@ -94,23 +94,36 @@ section {
   }
 }
 
-.published {
+.published,
+.samples {
   color: #dddddd;
-  background: #009999;
   text-align: center;
 }
-.published h2 {
+.published h2,
+.samples h2 {
   font-size: 32px;
+  margin-bottom: 1.5em;
 }
-.published img {
+.published img,
+.samples img {
   display: block;
   margin: 0 auto;
 }
-.published p {
+.published p,
+.samples p {
   text-align: center;
 }
-.published a {
+.published a,
+.samples a {
   color: #dddddd;
+}
+
+.published {
+  background: #009999;
+}
+
+.samples {
+  background: #3914af;
 }
 
 /*
@@ -161,9 +174,6 @@ section {
  */
 .thumbnails {
   display: block;
-}
-.thumbnails .thumbnail {
-  margin-top: 3em;
 }
 
 @media screen and (min-width: 481px) {

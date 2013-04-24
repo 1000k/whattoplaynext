@@ -4,7 +4,7 @@
  */
 
 $title-font-size-desktop: $base-font-size * 6;
-$title-font-size-default: $base-font-size * 4;
+$title-font-size-default: $base-font-size * 3;
 
 section {
 	@include padding-leader(4);
@@ -33,14 +33,14 @@ section {
 	@include padding-trailer;
 }
 
-.published {
+.published,
+.samples {
 	color: $base-text-color;
-	background: $published-background-color;
-
 	text-align: center;
 
 	h2 {
 		font-size: $base-font-size * 2;
+		@include trailer(1);
 	}
 
 	img {
@@ -55,4 +55,13 @@ section {
 	a {
 		color: $base-text-color;
 	}
+
+}
+
+.published {
+	background: $published-background-color;
+}
+
+.samples {
+	background: $samples-background-color;
 }

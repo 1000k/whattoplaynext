@@ -10,11 +10,17 @@
 	<?php
 		echo $this->Html->meta('icon');
 		echo $this->Html->css(['wpn']);
+		echo $this->Html->script(['jquery', 'jquery.fitvids']);
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
 	<?= $this->element('ga') ?>
+	<script>
+$(document).ready(function(){
+	$(".video-container").fitVids();
+});
+	</script>
 </head>
 <body>
 	<div class="container">
