@@ -23,21 +23,34 @@
 	}
 }
 
-.btn-wpn {
-	font-size: $base-font-size * 2;
-	line-height: $base-font-size * 4;
-	width: $base-font-size * 24;
-	height: $base-font-size * 4;
-}
-
 .btn-block {
 	display: block;
 }
 
-.btn-wpn-domannaka {
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	margin-left: -($base-font-size * 12);
-	margin-top: -($base-font-size * 4);
+.btn-wpn {
+	font-size: $base-font-size * 2;
+	line-height: $base-font-size * 2;
 }
+
+.btn-wpn-domannaka {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+@include breakpoint(desktop) {
+	.btn-wpn {
+		font-size: $base-font-size * 2;
+		line-height: $base-font-size * 4;
+		width: $base-font-size * 24;
+		height: $base-font-size * 4;
+	}
+
+	.btn-wpn-domannaka {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		margin-left: -($base-font-size * 12);
+		margin-top: -($base-font-size * 4);
+	}
+}
+

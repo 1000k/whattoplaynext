@@ -6,10 +6,7 @@
     @if $point == smartphone {
         @media screen and (max-width: #{$breakpoint-smartphone}px ) { @content; }
     }
-    @else if $point == tablet {
-        @media screen and (min-width: #{$breakpoint-smartphone+1}px ) and (max-width: #{$breakpoint-desktop}px) { @content; }
-    }
     @else if $point == desktop {
-        @media screen and (min-width: #{$breakpoint-desktop+1}px) { @content; }
+        @media screen and (min-width: #{$breakpoint-smartphone+1}px ) { @content; }
     }
 }

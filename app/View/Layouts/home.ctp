@@ -5,7 +5,6 @@
 	<?= $this->Html->charset(); ?>
 	<title>
 		What To Play Next?
-		<?= $title_for_layout ? ": {$title_for_layout}" : ''; ?>
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
@@ -14,14 +13,11 @@
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
-	<?= $this->element('ga') ?>
+	<?= $this->element('ga'); ?>
 </head>
-<body>
+<body id="home">
 	<div class="container">
-		<article>
-			<?= $this->Session->flash(); ?>
-			<?= $this->fetch('content'); ?>
-		</article>
+		<?= $this->fetch('content'); ?>
 
 		<?= $this->element('footer') ?>
 	</div>

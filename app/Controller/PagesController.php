@@ -74,7 +74,7 @@ class PagesController extends AppController {
 	}
 
 	public function index() {
-		$this->set('title_for_layout', '');
+		$this->layout = 'home';
 		$this->render('home');
 	}
 }
