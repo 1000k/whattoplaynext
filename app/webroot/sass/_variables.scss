@@ -6,25 +6,25 @@ $base-line-height: 24px;
 $base-font-family: "Helvetica Neue",Helvetica,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro W3",メイリオ,Meiryo,sans-serif;
 
 // Color Scheme
-// http://colorschemedesigner.com/#1h31Tw0w0w0w0
+// http://colorschemedesigner.com/#0X31Tw0w0w0w0
 //---------------
-$primary-base: #FFC700;
-$primary-base-darker: #BFA030;
-$primary-base-darkest: #A68100;
-$primary-base-brighter: #FFD540;
-$primary-base-brightest: #FFE073;
+$primary-base: #FFAA00;
+$primary-base-darker: #BF8F30;
+$primary-base-darkest: #A66E00;
+$primary-base-brighter: #FFBF40;
+$primary-base-brightest: #FFD073;
 
-$secondary-a-base: #5E0DAC;
-$secondary-a-base-darker: #552781;
-$secondary-a-base-darkest: #3B0470;
-$secondary-a-base-brighter: #8D41D6;
-$secondary-a-base-brightest: #A069D6;
+$secondary-a-base: #3914AF;
+$secondary-a-base-darker: #412C84;
+$secondary-a-base-darkest: #200772;
+$secondary-a-base-brighter: #6A48D7;
+$secondary-a-base-brightest: #876ED7;
 
-$secondary-b-base: #0E53A7;
-$secondary-b-base-darker: #274E7D;
-$secondary-b-base-darkest: #04346C;
-$secondary-b-base-brighter: #4284D3;
-$secondary-b-base-brightest: #6899D3;
+$secondary-b-base: #009999;
+$secondary-b-base-darker: #1D7373;
+$secondary-b-base-darkest: #006363;
+$secondary-b-base-brighter: #33CCCC;
+$secondary-b-base-brightest: #5CCCCC;
 
 
 // Base colors
@@ -32,21 +32,24 @@ $secondary-b-base-brightest: #6899D3;
 //---------------
 $base-background-color: #000;
 $base-text-color: #ddd;
-$base-text-color-link-normal: $secondary-b-base-brighter;
-$base-text-color-link-hover: $secondary-b-base-brightest;
-$base-text-color-link-active: $secondary-a-base-brighter;
+$base-text-color-link-normal: $secondary-a-base-brighter;
+$base-text-color-link-hover: $secondary-a-base-brightest;
+$base-text-color-link-active: $secondary-b-base-brighter;
 $base-text-color-link-visited: $base-text-color-link-normal;
 $base-text-color-link-focus: $base-text-color-link-active;
 
-$btn-background-color: $secondary-b-base-brighter;
-$btn-background-color-hover: $secondary-b-base-darkest;
-$btn-background-color-active: $secondary-a-base;
+$btn-background-color: $secondary-a-base-brighter;
+$btn-background-color-hover: $secondary-a-base-darkest;
+$btn-background-color-active: $secondary-b-base;
 $btn-text-color: #fff;
 // $btn-text-color-link-normal: #4284D3;
 // $btn-text-color-link-hover: #5EA7FF;
 // $btn-text-color-link-active: #FA5EFF;
 // $btn-text-color-link-visited: $btn-text-color-link-normal;
 // $btn-text-color-link-focus: $btn-text-color-link-active;
+
+$title-background-color: $primary-base;
+$published-background-color: $secondary-b-base;
 
 // Break points
 //---------------

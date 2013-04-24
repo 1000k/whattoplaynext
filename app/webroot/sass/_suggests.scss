@@ -13,7 +13,7 @@ section {
 
 .title {
 	color: #000;
-	background: $primary-base;
+	background: $title-background-color;
 	font-weight: bold;
 	
 	font-size: $title-font-size-default;
@@ -35,7 +35,7 @@ section {
 
 .published {
 	color: $base-text-color;
-	background: $secondary-a-base;
+	background: $published-background-color;
 
 	text-align: center;
 
