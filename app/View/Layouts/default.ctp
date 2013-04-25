@@ -10,7 +10,7 @@
 	<?php
 		echo $this->Html->meta('icon');
 		echo $this->Html->css(['wpn']);
-		echo $this->Html->script(['jquery', 'jquery.fitvids']);
+		echo $this->Html->script(['jquery', 'jquery.fitvids', 'jquery.mousewheel.min', 'jquery.hook.min']);
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
@@ -18,11 +18,15 @@
 	<?= $this->element('ga') ?>
 	<script>
 $(document).ready(function(){
-	$(".video-container").fitVids();
+	$('#hook').hook({
+		locationHref: '<?= Router::url('/next', true) ?>'
+	});
 });
 	</script>
 </head>
 <body>
+	<div class="hook" id="hook"></div>
+
 	<div class="container">
 		<article>
 			<?= $this->Session->flash(); ?>
