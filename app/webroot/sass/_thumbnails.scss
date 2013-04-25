@@ -8,12 +8,20 @@
 
 	.thumbnail {
 		@include leader;
+		&:hover {
+			background: $secondary-b-base-darkest;
+		}
+		&:active {
+			background: $secondary-b-base-brightest;
+		}
 	}
 
 	a,
+	a:hover,
 	a:visited {
 		color: $base-text-color;
 	}
+
 }
 
 @include breakpoint(desktop) {
