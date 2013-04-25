@@ -4,14 +4,14 @@
  * Author: Jordan Singer, Brandon Jacoby, Adam Girton
  * Copyright (c) 2013 - Hook.  All rights reserved.
  * http://www.usehook.com
- */;
-(function ($, window, document, undefined) {
+ */
+;(function ($, window, document, undefined) {
   var win = $(this),
     st = win.scrollTop() || window.pageYOffset,
     called = false;
 
-  var hasTouch = function () {
-    return !!('ontouchstart' in window) || !! ('onmsgesturechange' in window);
+  var hasTouch = function() {
+    return document.ontouchstart !== undefined;
   };
 
   var methods = {
@@ -27,6 +27,7 @@
             textRequired: false, // will input loader text if true
             scrollWheelSelected: false, // will use scroll wheel events
             swipeDistance: 50, // swipe distance for loader to show on touch devices
+            swipeArea: 200, // reloadable area from Y = 0
             loaderClass: 'hook-loader',
             spinnerClass: 'hook-spinner',
             loaderTextClass: 'hook-text',
@@ -80,7 +81,7 @@
               e.preventDefault();
             }
 
-            if (swipe > settings.swipeDistance && lastY <= 40) {
+            if (swipe > settings.swipeDistance && lastY <= settings.swipeArea) {
               methods.onSwipe($this, settings);
             }
           });
