@@ -1,3 +1,3 @@
 <footer>
-	<small>&copy; <?= $this->Html->link('What To Play Next? / 次なにやる？', '/') ?></small>
+	<small>&copy; <?= $this->Html->link('What To Play Next?', '/') ?></small>
 </footer>

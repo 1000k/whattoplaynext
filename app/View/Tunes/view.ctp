@@ -9,7 +9,7 @@
 	<?php foreach($tune['Book'] as $book): ?>
 		<li class="thumbnail">
 			<?= $this->Html->image("books/{$book['image_path']}", ['alt' => $book['name'], 'url' => $book['url_amazon']]) ?>
-			<p><?= $this->Html->link($book['name'], $book['url_amazon']) ?><img src="<?= $book['url_amazon_conversion_image'] ?>" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;"></p>
+			<p><?= $this->Html->link($book['name'], $book['url_amazon'], ['target' => '_blank']) ?><img src="<?= $book['url_amazon_conversion_image'] ?>" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;"></p>
 		</li>
 	<?php endforeach; ?>
 	</ul>

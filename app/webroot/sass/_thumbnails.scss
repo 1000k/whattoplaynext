@@ -5,14 +5,23 @@
 
 .thumbnails {
 	display: block;
+
+	.thumbnail {
+		@include leader;
+	}
+
+	a,
+	a:visited {
+		color: $base-text-color;
+	}
 }
 
 @include breakpoint(desktop) {
 	.thumbnails {
 		@include display-box;
 		@include box-align(stretch);
-		@include leader(1);
-		@include trailer(1);
+		@include leader;
+		@include trailer;
 
 		.thumbnail {
 			@include box-flex(1);
