@@ -11,7 +11,7 @@ class YouTubeSource extends DataSource {
 /**
  * @const int Max number of search result
  */
-	const MAX_SEARCH_RESULTS = 10;
+	const MAX_SEARCH_RESULTS = 5;
 
 /**
  * An optional description of your datasource
