@@ -33,7 +33,7 @@ class YouTube extends AppModel {
 			$this->thumbnail_dir = IMAGES . 'samples';
 		}
 
-		$file = $this->download($url);
+		$file = $this->_download($url);
 
 		if (!$file) {
 			return false;
@@ -42,7 +42,7 @@ class YouTube extends AppModel {
 		return file_put_contents("{$this->thumbnail_dir}/{$video_id}.jpg", $file);
 	}
 
-	protected function download($url) {
+	protected function _download($url) {
 		return file_get_contents($url);
 	}
 

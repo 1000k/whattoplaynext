@@ -40,4 +40,8 @@ class SampleTest extends CakeTestCase {
 		parent::tearDown();
 	}
 
+	public function testDummy() {
+		$this->markTestIncomplete();
+	}
+
 }

@@ -10,6 +10,7 @@ App::uses('Shell', 'Console');
  */
 class SamplesShell extends AppShell {
 	public $uses = ['Sample', 'YouTube'];
+	public $tasks = ['TunesJson'];
 
 	public function main() {
 		$usage = <<<USAGE
@@ -22,6 +23,8 @@ USAGE;
 	}
 
 	public function update() {
+		$tunes = $this->TunesJson->load();
+
 		$samples = $this->YouTube->find('all', [
 			'conditions' => ['q' => 'Miles Davis jazz',]
 		]);

@@ -49,12 +49,12 @@ class YouTubeTest extends CakeTestCase {
 
 /**
  * @covers YouTube::downloadThumbnail
- * @covers YouTube::download
+ * @covers YouTube::_download
  */
 	public function testDownloadThumbnail() {
-		$model = $this->getMockForModel('YouTube', ['download']);
+		$model = $this->getMockForModel('YouTube', ['_download']);
 		$model->expects($this->once())
-			->method('download')
+			->method('_download')
 			->will($this->returnValue("dummyfile"));
 
 		$root = vfsStream::setup('samples');	// => vfs://samples/

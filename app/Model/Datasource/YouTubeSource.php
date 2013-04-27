@@ -46,7 +46,7 @@ class YouTubeSource extends DataSource {
 		return 'COUNT';
 	}
 
-	 public function read(Model $model, $queryData = array(), $recursive = null) {
+	public function read(Model $model, $queryData = array(), $recursive = null) {
 		/**
 		 * Here we do the actual count as instructed by our calculate()
 		 * method above. We could either check the remote source or some

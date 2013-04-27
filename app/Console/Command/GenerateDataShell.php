@@ -11,24 +11,19 @@ App::uses('Shell', 'Console');
  */
 class GenerateDataShell extends AppShell {
 	public $uses = ['Book', 'BooksTune', 'Tune'];
+	public $tasks = ['TunesJson'];
 
 	public function main() {
 		$this->out('Usage: cake generatedata generate');
 	}
 
 	public function generate() {
-		$data_json = file_get_contents(APPLIBS . '/tunes.json');
-		if ($data_json === false) {
-			$this->exitError('Failed to read json file.');
-		}
+		$data = $this->TunesJson->load();
 
-		if (($data = json_decode($data_json)) === false) {
-			$this->exitError('Failed to parse json.');
-		}
-
-		$this->clearTables();
+		$this->__clearTables();
 
 		foreach ($data as $book => $contents) {
+			$this->out("Saving tunes on '{$book}'...");
 			$this->Book->create([
 				'name' => $book,
 				'image_path' => $contents->image_path,
@@ -37,18 +32,18 @@ class GenerateDataShell extends AppShell {
 			]);
 
 			if (!$this->Book->save()) {
-				$this->exitError("Failed to save '{$book}' book.");
+				$this->error("Failed to save '{$book}' book.");
 			}
 
 			$book_id = $this->Book->id;
 
 			foreach ($contents->tunes as $tune) {
 				// Prevent to insert the same tune.
-				if (!($tune_id = $this->getId($tune))) {
+				if (!($tune_id = $this->__getId($tune))) {
 					$this->Tune->create(['name' => $tune]);
 
 					if (!$this->Tune->save()) {
-						$this->exitError("Failed to save tune '{$tune}'.");
+						$this->error("Failed to save tune '{$tune}'.");
 					}
 
 					$tune_id = $this->Tune->id;
@@ -60,25 +55,26 @@ class GenerateDataShell extends AppShell {
 				]);
 
 				if (!$this->BooksTune->save()) {
-					$this->exitError("Failed to save books_tunes.\nbook_id = {$book_id}, tune_id = {$tune_id}");
+					$this->error("Failed to save books_tunes.\nbook_id = {$book_id}, tune_id = {$tune_id}");
 				}
 			}
-
 		}
 
+		$this->hr();
+		$this->out('Saved Books: ' . $this->Book->find('count'));
+		$this->out('Saved BooksTunes: ' . $this->BooksTune->find('count'));
+		$this->out('Saved Tunes: ' . $this->Tune->find('count'));
+		$this->out("Done.");
+
+		return true;
 	}
 
-	protected function exitError($message) {
-		echo $message;
-		exit;
-	}
-
-	private function getId($tune) {
+	private function __getId($tune) {
 		$record = $this->Tune->findByName($tune);
 		return isset($record['Tune']['id']) ? $record['Tune']['id'] : false;
 	}
 
-	private function clearTables() {
+	private function __clearTables() {
 		foreach ($this->uses as $table) {
 			$this->$table->deleteAll('1 = 1');
 			$this->$table->query('ALTER TABLE ' . Inflector::tableize($table) . ' AUTO_INCREMENT = 1', false);
