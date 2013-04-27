@@ -39,7 +39,7 @@ class GenerateDataShell extends AppShell {
 
 			foreach ($contents->tunes as $tune) {
 				// Prevent to insert the same tune.
-				if (!($tune_id = $this->__getId($tune))) {
+				if (!($tune_id = $this->_getId($tune))) {
 					$this->Tune->create(['name' => $tune]);
 
 					if (!$this->Tune->save()) {
@@ -67,11 +67,6 @@ class GenerateDataShell extends AppShell {
 		$this->out("Done.");
 
 		return true;
-	}
-
-	private function __getId($tune) {
-		$record = $this->Tune->findByName($tune);
-		return isset($record['Tune']['id']) ? $record['Tune']['id'] : false;
 	}
 
 	private function __clearTables() {

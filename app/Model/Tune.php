@@ -86,4 +86,15 @@ class Tune extends AppModel {
 		]);
 		return rand(1, $max[0]['max_id']);
 	}
+
+/**
+ * Get Tune.id by tune name.
+ *
+ * @param string $name
+ * @return mixed Tune.id if found. False if not found.
+ */
+	public function getIdByName($name) {
+		$record = $this->findByName($name);
+		return isset($record['Tune']['id']) ? $record['Tune']['id'] : false;
+	}
 }

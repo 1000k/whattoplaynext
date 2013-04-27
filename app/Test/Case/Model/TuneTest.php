@@ -27,6 +27,7 @@ class TuneTest extends CakeTestCase {
 	public function setUp() {
 		parent::setUp();
 		$this->Tune = ClassRegistry::init('Tune');
+		$this->tuneFixture = new TuneFixture();
 	}
 
 /**
@@ -44,13 +45,24 @@ class TuneTest extends CakeTestCase {
  * @covers Tune::random
  */
 	public function testRandom() {
-		$tuneFixture = new TuneFixture();
-		$tunes = $tuneFixture->records;
+		$tunes = $this->tuneFixture->records;
 
 		$id = $this->Tune->random();
 
 		$this->assertGreaterThan(0, $id);
 		$this->assertLessThanOrEqual(count($tunes), $id);
+	}
+
+/**
+ * @covers Tune::getIdByName
+ */
+	public function testGetIdByName() {
+		$this->assertEquals(
+			$this->tuneFixture->records[0]['id'],
+			$this->Tune->getIdByName($this->tuneFixture->records[0]['name'])
+		);
+
+		$this->assertFalse($this->Tune->getIdByName('NEVER EXISTED TUNE NAME'));
 	}
 
 }

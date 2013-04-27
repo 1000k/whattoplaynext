@@ -25,11 +25,17 @@ USAGE;
 	public function update() {
 		$tunes = $this->TunesJson->load();
 
+		foreach ($tunes as $book => $contents) {
+			foreach ($contents->tunes as $tune) {
+				$this->out($tune);
+			}
+		}
+
 		$samples = $this->YouTube->find('all', [
 			'conditions' => ['q' => 'Miles Davis jazz',]
 		]);
 
-		var_dump($samples);
+		// var_dump($samples);
 		return true;
 	}
 
