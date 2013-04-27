@@ -14,7 +14,7 @@ class TunesJsonTask extends Shell {
 			$this->error('Failed to read json file.');
 		}
 
-		if (($data = json_decode($data_json)) === false) {
+		if (($data = json_decode($data_json, true)) === false) {
 			$this->error('Failed to parse json.');
 		}
 

@@ -1,22 +1,23 @@
 # User specific & automatically generated files #
 #################################################
+.sass-cache/
 /app/Config/database.php
 /app/tmp
-/lib/Cake/Console/Templates/skel/tmp/
-/plugins
-/vendors
+/app/webroot/img/books/*
 /build
 /dist
+/lib/Cake/Console/Templates/skel/tmp/
+/plugins
 /tags
-.sass-cache/
+/vendors
 
 # OS generated files #
 ######################
+._*
 .DS_Store
 .DS_Store?
-._*
 .Spotlight-V100
 .Trashes
-Icon?
 ehthumbs.db
+Icon?
 Thumbs.db
