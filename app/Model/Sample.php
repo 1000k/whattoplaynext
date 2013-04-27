@@ -20,6 +20,16 @@ class Sample extends AppModel {
  * @var array
  */
 	public $validate = array(
+		'tune_id' => array(
+			'numeric' => array(
+				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
 		'title' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -40,9 +50,9 @@ class Sample extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'tune_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
+		'url' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -50,7 +60,7 @@ class Sample extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'url' => array(
+		'thumbnail' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',

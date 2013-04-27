@@ -14,7 +14,9 @@ class SampleTest extends CakeTestCase {
  */
 	public $fixtures = array(
 		'app.sample',
-		'app.tune'
+		'app.tune',
+		'app.book',
+		'app.books_tune'
 	);
 
 /**
@@ -38,7 +40,4 @@ class SampleTest extends CakeTestCase {
 		parent::tearDown();
 	}
 
-	public function testDummy() {
-		$this->markTestIncomplete();
-	}
 }
