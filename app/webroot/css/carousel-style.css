@@ -199,10 +199,12 @@
  * .m-carousel.m-fluid.m-carousel-photos
  */
 
+/* This setting causes a minor bug -- shows horizontal bar on narrow window.
 .m-carousel-photos {
     margin: 0 -10px;
     padding: 0 10px;
 }
+*/
 
 .m-carousel-photos .m-item  > img {
     margin: 0;

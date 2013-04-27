@@ -23,22 +23,24 @@
 	<h2>こんな曲です</h2>
 
 	<div style="max-width:600px; margin:0 auto;">
-	<div class="m-carousel m-fluid m-carousel-photos">
-		<div class="m-carousel-inner">
-		<?php foreach ($tune['Sample'] as $key => $sample): ?>
-			<div class="m-item">
-				<?= $this->Html->image("samples/{$sample['thumbnail']}"); ?>
-				<?= $this->Html->para("m-caption", $sample['title']) ?>
+		<div class="m-carousel m-fluid m-carousel-photos">
+			<div class="m-carousel-inner">
+			<?php foreach ($tune['Sample'] as $key => $sample): ?>
+				<div class="m-item">
+					<?= $this->Html->image("samples/{$sample['thumbnail']}", ['alt' => $sample['title'], 'style' => 'width:100%']); ?>
+					<a href="http://www.youtube.com/embed/<?= $sample['url'] ?>" title="<?= $sample['title'] ?>" class="html5lightbox">
+						<?= $this->Html->para("m-caption", $sample['title']) ?>
+					</a>
+				</div>
+			<?php endforeach; ?>
 			</div>
-		<?php endforeach; ?>
-		</div>
 
-		<div class="m-carousel-controls m-carousel-bulleted">
-			<?php for ($i=1; $i <= $count_sample; $i++): ?>
-				<a href="#" data-slide="<?= $i ?>"><?= $i ?></a>
-			<?php endfor; ?>
+			<div class="m-carousel-controls m-carousel-bulleted">
+				<?php for ($i=1; $i <= $count_sample; $i++): ?>
+					<a href="#" data-slide="<?= $i ?>"><?= $i ?></a>
+				<?php endfor; ?>
+			</div>
 		</div>
-	</div>
 	</div>
 </section>
 <?php endif; ?>

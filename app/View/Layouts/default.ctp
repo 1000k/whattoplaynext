@@ -10,7 +10,7 @@
 	<?php
 		echo $this->Html->meta('icon');
 		echo $this->Html->css(['wpn', 'carousel', 'carousel-style']);
-		echo $this->Html->script(['jquery', 'jquery.fitvids', 'jquery.mousewheel.min', 'jquery.hook.min', 'carousel']);
+		echo $this->Html->script(['jquery', 'jquery.fitvids', 'jquery.mousewheel.min', 'jquery.hook.min', 'carousel', 'html5lightbox']);
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
