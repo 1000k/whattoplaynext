@@ -80,6 +80,11 @@ class Tune extends AppModel {
 		)
 	);
 
+/**
+ * Picks up Tune.id randomly.
+ *
+ * @return integer Tune.id
+ */
 	public function random() {
 		$max = $this->find('first', [
 			'fields' => ['MAX(Tune.id) as max_id'],

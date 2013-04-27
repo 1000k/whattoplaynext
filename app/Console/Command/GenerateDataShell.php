@@ -14,7 +14,7 @@ class GenerateDataShell extends AppShell {
 	public $tasks = ['TunesJson'];
 
 	public function main() {
-		$this->out('Usage: cake generatedata generate');
+		$this->out('Usage: cake GenerateData generate');
 	}
 
 	public function generate() {
@@ -39,7 +39,7 @@ class GenerateDataShell extends AppShell {
 
 			foreach ($contents->tunes as $tune) {
 				// Prevent to insert the same tune.
-				if (!($tune_id = $this->_getId($tune))) {
+				if (!($tune_id = $this->Tune->getIdByName($tune))) {
 					$this->Tune->create(['name' => $tune]);
 
 					if (!$this->Tune->save()) {
