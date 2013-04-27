@@ -77,7 +77,7 @@ class YouTubeSource extends DataSource {
 					$res[] = [
 						'videoId' => $item['id']['videoId'],
 						'title' => $item['snippet']['title'],
-						'thumbnail' => $item['snippet']['thumbnails']['medium']['url'],
+						'thumbnailUrl' => $item['snippet']['thumbnails']['medium']['url'],
 					];
 				}
 			}

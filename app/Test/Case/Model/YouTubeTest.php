@@ -48,25 +48,26 @@ class YouTubeTest extends CakeTestCase {
 	}
 
 /**
- * @covers YouTube::store
+ * @covers YouTube::downloadThumbnail
+ * @covers YouTube::download
  */
-	public function testStore() {
-		$model = $this->getMockForModel('YouTube', ['uso']);
+	public function testDownloadThumbnail() {
+		$model = $this->getMockForModel('YouTube', ['download']);
+		$model->expects($this->once())
+			->method('download')
+			->will($this->returnValue("dummyfile"));
+
 		$root = vfsStream::setup('samples');	// => vfs://samples/
 		$thumbnail_dir = vfsStream::url('samples');
 		$model->thumbnail_dir = $thumbnail_dir;
-		$tune_id = 1;
 
-		$opts = [
-			'videoId' => 'DUMMY1234',
-			'title' => 'Dummy Title',
-			'thumbnail' => 'http://dummy/dummy.jpg'
-		];
-		$result = $model->store($tune_id, $opts);
+		$video_id = 'DUMMY1234';
+		$thumbnail_url = 'http://dummy/dummy.jpg';
 
-		$this->assertTrue($result);
+		$result = $model->downloadThumbnail($thumbnail_url, $video_id);
+
+		$this->assertGreaterThan(0, $result);
 		$this->assertTrue(file_exists(vfsStream::url('samples/DUMMY1234.jpg')));
-		$this->assertGreaterThan(0, $this->Sample->find('count', ['conditions' => ['Sample.id' => 1]]));
 	}
 
 }
