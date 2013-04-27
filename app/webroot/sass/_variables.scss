@@ -9,22 +9,22 @@ $base-font-family: "Helvetica Neue",Helvetica,"ヒラギノ角ゴ Pro W3","Hirag
 // http://colorschemedesigner.com/#0X31Tw0w0w0w0
 //---------------
 $primary-base: #FFAA00;
-$primary-base-darker: #BF8F30;
-$primary-base-darkest: #A66E00;
-$primary-base-brighter: #FFBF40;
-$primary-base-brightest: #FFD073;
+$primary-darker: #BF8F30;
+$primary-darkest: #A66E00;
+$primary-brighter: #FFBF40;
+$primary-brightest: #FFD073;
 
 $secondary-a-base: #3914AF;
-$secondary-a-base-darker: #412C84;
-$secondary-a-base-darkest: #200772;
-$secondary-a-base-brighter: #6A48D7;
-$secondary-a-base-brightest: #876ED7;
+$secondary-a-darker: #412C84;
+$secondary-a-darkest: #200772;
+$secondary-a-brighter: #6A48D7;
+$secondary-a-brightest: #876ED7;
 
 $secondary-b-base: #009999;
-$secondary-b-base-darker: #1D7373;
-$secondary-b-base-darkest: #006363;
-$secondary-b-base-brighter: #33CCCC;
-$secondary-b-base-brightest: #5CCCCC;
+$secondary-b-darker: #1D7373;
+$secondary-b-darkest: #006363;
+$secondary-b-brighter: #33CCCC;
+$secondary-b-brightest: #5CCCCC;
 
 
 // Base colors
@@ -32,15 +32,15 @@ $secondary-b-base-brightest: #5CCCCC;
 //---------------
 $base-background-color: #000;
 $base-text-color: #ddd;
-$base-text-color-link-normal: $secondary-a-base-brighter;
-$base-text-color-link-hover: $secondary-a-base-brightest;
-$base-text-color-link-active: $secondary-b-base-brighter;
+$base-text-color-link-normal: $secondary-a-brighter;
+$base-text-color-link-hover: $secondary-a-brightest;
+$base-text-color-link-active: $secondary-b-brighter;
 $base-text-color-link-visited: $base-text-color-link-normal;
 $base-text-color-link-focus: $base-text-color-link-active;
 
-$btn-background-color: $secondary-a-base-brighter;
-$btn-background-color-hover: $secondary-a-base-darkest;
-$btn-background-color-active: $secondary-b-base;
+$btn-background-color: $secondary-a-base;
+$btn-background-color-hover: $secondary-a-brighter;
+$btn-background-color-active: $secondary-b-brightest;
 $btn-text-color: #fff;
 // $btn-text-color-link-normal: #4284D3;
 // $btn-text-color-link-hover: #5EA7FF;
