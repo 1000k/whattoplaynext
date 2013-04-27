@@ -26,9 +26,9 @@ class GenerateDataShell extends AppShell {
 			$this->out("Saving tunes on '{$book}'...");
 			$this->Book->create([
 				'name' => $book,
-				'image_path' => $contents->image_path,
-				'url_amazon' => $contents->url_amazon,
-				'url_amazon_conversion_image' => $contents->url_amazon_conversion_image
+				'image_path' => $contents['image_path'],
+				'url_amazon' => $contents['url_amazon'],
+				'url_amazon_conversion_image' => $contents['url_amazon_conversion_image']
 			]);
 
 			if (!$this->Book->save()) {
@@ -37,7 +37,7 @@ class GenerateDataShell extends AppShell {
 
 			$book_id = $this->Book->id;
 
-			foreach ($contents->tunes as $tune) {
+			foreach ($contents['tunes'] as $tune) {
 				// Prevent to insert the same tune.
 				if (!($tune_id = $this->Tune->getIdByName($tune))) {
 					$this->Tune->create(['name' => $tune]);
