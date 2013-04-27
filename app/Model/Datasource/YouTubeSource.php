@@ -82,9 +82,9 @@ class YouTubeSource extends DataSource {
 				}
 			}
 		} catch (Google_ServiceException  $e) {
-			throw new CakeException('An service error occurred:' . $e->getMessage());
+			throw new CakeException('A Google service error occurred:' . $e->getMessage());
 		} catch (Google_Exception $e) {
-			throw new CakeException('An client error occurred:' . $e->getMessage());
+			throw new CakeException('A client error occurred:' . $e->getMessage());
 		}
 		
 		return [$model->alias => $res];

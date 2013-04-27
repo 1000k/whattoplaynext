@@ -1,6 +1,11 @@
 <?php
 App::uses('YouTube', 'Model');
 
+require_once APP . DS . 'Vendor' . DS. 'autoload.php';
+use org\bovigo\vfs\vfsStream;
+
+// App::import('Vendor', 'vfsStream', 'mikey179\vfsStream\src\main\php\org\bovigo\vfs');
+
 /**
  * YouTube Test Case
  *
@@ -44,6 +49,8 @@ class YouTubeTest extends CakeTestCase {
 			'title' => 'Dummy Title',
 			'thumbnail' => 'http://dummy/dummy.jpg'
 		]);
+
+		$root = vfsStream::setup();
 
 		$this->assertTrue($res);
 	}
