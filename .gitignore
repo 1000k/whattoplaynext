@@ -3,7 +3,7 @@
 .sass-cache/
 /app/Config/database.php
 /app/tmp
-/app/webroot/img/books/*
+/app/webroot/img/samples/*
 /build
 /dist
 /lib/Cake/Console/Templates/skel/tmp/
@@ -14,6 +14,7 @@
 # OS generated files #
 ######################
 ._*
+*.bak
 .DS_Store
 .DS_Store?
 .Spotlight-V100
