@@ -1,1 +1,1 @@
-<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://wpn.cloudapp.net" data-text="What To Play Next? (次なにやる？)" data-via="1000kei" data-lang="ja">ツイート</a>
+<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://wpn.cloudapp.net" data-text="What To Play Next? (次なにやる？)" data-via="1000kei" data-lang="en">Tweet</a>
