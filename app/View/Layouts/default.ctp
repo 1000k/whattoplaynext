@@ -9,8 +9,8 @@
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
-		echo $this->Html->css(['wpn']);
-		echo $this->Html->script(['jquery', 'jquery.fitvids', 'jquery.mousewheel.min', 'jquery.hook.min']);
+		echo $this->Html->css(['wpn', 'carousel', 'carousel-style']);
+		echo $this->Html->script(['jquery', 'jquery.fitvids', 'jquery.mousewheel.min', 'jquery.hook.min', 'carousel']);
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
@@ -21,6 +21,7 @@ $(document).ready(function(){
 	$('#hook').hook({
 		locationHref: '<?= Router::url('/next', true) ?>'
 	});
+	$(".m-carousel").carousel();
 });
 	</script>
 </head>

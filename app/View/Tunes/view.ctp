@@ -17,6 +17,28 @@
 	</ul>
 </section>
 
+<?php if (count($tune['Sample']) > 0): ?>
+<section class="samples">
+	<h2>こんな曲です</h2>
+	<div class="m-carousel m-fluid m-carousel-photos">
+		<div class="m-carousel-inner">
+		<?php foreach ($tune['Sample'] as $key => $sample): ?>
+			<div class="m-item">
+				<?= $this->Html->image("samples/{$sample['thumbnail']}"); ?>
+				<?= $this->Html->para("m-caption", $sample['title']) ?>
+			</div>
+		<?php endforeach; ?>
+		</div>
+
+		<div class="m-carousel-controls m-carousel-bulleted">
+			<a href="#" data-slide="1">1</a>
+			<a href="#" data-slide="2">2</a>
+			<a href="#" data-slide="3">3</a>
+		</div>
+	</div>
+</section>
+<?php endif; ?>
+
 <section class="wrapper">
 	<div class="wrapper-inner">
 		<?= $this->element('btn_wpn') ?>
