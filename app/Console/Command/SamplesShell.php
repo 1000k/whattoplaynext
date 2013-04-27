@@ -23,11 +23,10 @@ USAGE;
 
 	public function update() {
 		$samples = $this->YouTube->find('all', [
-			'conditions' => [
-				'q' => 'Miles Davis',
-				'maxResults' => 25
-			]
+			'conditions' => ['q' => 'Miles Davis jazz',]
 		]);
+
+		var_dump($samples);
 		return true;
 	}
 

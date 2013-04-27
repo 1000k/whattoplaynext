@@ -9,6 +9,11 @@ App::import('Vendor', 'Google_YoutubeService', ['file' => 'google-api-php-client
  */
 class YouTubeSource extends DataSource {
 /**
+ * @const int Max number of search result
+ */
+	const MAX_SEARCH_RESULTS = 10;
+
+/**
  * An optional description of your datasource
  */
 	public $description = 'YouTube API datasource';
@@ -61,7 +66,7 @@ class YouTubeSource extends DataSource {
 				'id,snippet',
 				[
 					'q' => $queryData['conditions']['q'],
-					'maxResults' => $queryData['conditions']['maxResults'],
+					'maxResults' => self::MAX_SEARCH_RESULTS,
 				]
 			);
 
@@ -70,8 +75,9 @@ class YouTubeSource extends DataSource {
 			foreach ($response['items'] as $item) {
 				if ($item['id']['kind'] === 'youtube#video') {
 					$res[] = [
+						'videoId' => $item['id']['videoId'],
 						'title' => $item['snippet']['title'],
-						'videoId' => $item['id']['videoId']
+						'thumbnail' => $item['snippet']['thumbnails']['medium']['url'],
 					];
 				}
 			}
