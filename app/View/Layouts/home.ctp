@@ -15,12 +15,12 @@
 	<?= $this->element('ga'); ?>
 </head>
 <body>
-	<?= $this->Element('drawer') ?>
+	<?= $this->element('drawer') ?>
 
-	<div id="content">
+	<div id="content" class="drawer-swipable">
 		<div class="wrapper">
-			<?= $this->Element('btn-drawer-trigger') ?>
-			
+			<?= $this->element('btn-drawer-trigger') ?>
+
 			<div class="wrapper-inner">
 				<?= $this->element('btn-wpn') ?>
 			</div>
@@ -29,6 +29,6 @@
 		<?= $this->element('footer') ?>
 	</div>
 
-	<?= $this->Element('script-drawer-trigger') ?>
+	<?= $this->element('script-drawer-trigger') ?>
 </body>
 </html>

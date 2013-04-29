@@ -3,6 +3,7 @@ $(document).ready(function(){
 	var snapper = new Snap({
 		element: $('#content')[0]
 		, disable: 'right'
+		, slideIntent: 15
 	});
 
 	$('.btn-drawer-trigger').click(function() {
