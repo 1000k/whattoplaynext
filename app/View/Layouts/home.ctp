@@ -14,6 +14,8 @@
 	<?= $this->element('ga'); ?>
 </head>
 <body id="home">
+	<?= $this->element('configs') ?>
+
 	<div class="wrapper">
 		<div class="wrapper-inner">
 			<?= $this->element('btn_wpn') ?>

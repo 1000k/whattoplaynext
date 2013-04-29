@@ -38,12 +38,7 @@ class PagesController extends AppController {
  */
 	public $name = 'Pages';
 
-/**
- * This controller does not use a model
- *
- * @var array
- */
-	public $uses = array();
+	public $uses = ['Book'];
 
 /**
  * Displays a view
@@ -74,6 +69,7 @@ class PagesController extends AppController {
 	}
 
 	public function index() {
+		$this->set('books', $this->Book->find('list'));
 		$this->layout = 'home';
 		$this->render('home');
 	}

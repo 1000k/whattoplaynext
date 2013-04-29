@@ -32,5 +32,16 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-	public $components = ['DebugKit.Toolbar'];
+	public $components = ['DebugKit.Toolbar', 'Cookie'];
+
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Cookie->name = 'wpn';
+		$this->Cookie->key = 'Pf047y==}0\~ST.m{Mn$c=0jO(0lU#P]';
+		$this->Cookie->time = '7 days';			// or '1 hour'
+		// $this->Cookie->path = '/';
+		// $this->Cookie->domain = 'example.com';
+		$this->Cookie->secure = false;
+		$this->Cookie->httpOnly = false;
+	}
 }
