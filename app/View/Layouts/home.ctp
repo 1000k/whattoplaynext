@@ -19,9 +19,15 @@
 		<?= $this->Element('drawer') ?>
 
 		<div id="content">
-			<div class="relative tall">
-				<button class="btn btn-drawer-trigger"></button>
+			<?= $this->Element('btn-drawer-trigger') ?>
+
+			<div class="wrapper">
+				<div class="wrapper-inner">
+					<?= $this->element('btn-wpn') ?>
+				</div>
 			</div>
+				
+			<?= $this->element('footer') ?>
 		</div>
 
 <?php if (false): ?>
