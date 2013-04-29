@@ -18,9 +18,9 @@
 	<?= $this->Element('drawer') ?>
 
 	<div id="content">
-		<?= $this->Element('btn-drawer-trigger') ?>
-
 		<div class="wrapper">
+			<?= $this->Element('btn-drawer-trigger') ?>
+			
 			<div class="wrapper-inner">
 				<?= $this->element('btn-wpn') ?>
 			</div>
@@ -29,21 +29,6 @@
 		<?= $this->element('footer') ?>
 	</div>
 
-	<script>
-$(document).ready(function(){
-	var snapper = new Snap({
-		element: $('#content')[0]
-		, disable: 'right'
-	});
-
-	$('.btn-drawer-trigger').click(function() {
-		if( snapper.state().state=="left" ){
-			snapper.close();
-		} else {
-			snapper.open('left');
-		}
-	});
-});
-	</script>
+	<?= $this->Element('script-drawer-trigger') ?>
 </body>
 </html>

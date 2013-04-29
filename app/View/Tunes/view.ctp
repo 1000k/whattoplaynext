@@ -45,10 +45,8 @@
 </section>
 <?php endif; ?>
 
-<section class="next">
-	<div class="center">
-		<?= $this->element('btn-wpn') ?>
-	</div>
+<section class="next trailer-6">
+	<?= $this->element('btn-wpn') ?>
 
 	<?= $this->element('footer') ?>
 </section>

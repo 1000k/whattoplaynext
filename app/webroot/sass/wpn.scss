@@ -102,6 +102,10 @@ a {
 	text-align: center;
 }
 
-.center {
-	margin: 0 auto;
+.trailer-6 {
+	@include padding-trailer(6);
+}
+
+.no-bg {
+	background: #000 !important;
 }
