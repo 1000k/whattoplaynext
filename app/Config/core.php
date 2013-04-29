@@ -198,7 +198,7 @@ if (getenv('ENV_MODE') === 'development') {
  *
  */
 	Configure::write('Session', array(
-		'defaults' => 'cake'
+		'defaults' => 'database'
 	));
 
 /**
