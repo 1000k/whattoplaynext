@@ -10,7 +10,7 @@
 	<?php
 		echo $this->Html->meta('icon');
 		echo $this->Html->css(['wpn', 'carousel.min', 'carousel-style.min']);
-		echo $this->Html->script(['jquery', 'jquery.fitvids.min', 'jquery.mousewheel.min', 'jquery.hook.min', 'carousel.min', 'html5lightbox']);
+		echo $this->Html->script(['jquery', 'jquery.mousewheel.min', 'jquery.hook.min', 'carousel.min', 'html5lightbox']);
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
@@ -22,6 +22,8 @@ $(document).ready(function(){
 		locationHref: '<?= Router::url('/next', true) ?>'
 	});
 	$(".m-carousel").carousel();
+	
+	
 });
 	</script>
 </head>
