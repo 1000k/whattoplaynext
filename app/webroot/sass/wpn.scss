@@ -13,6 +13,7 @@
 @import "_mixins.scss";
 
 @import "_buttons.scss";
+@import "_forms.scss";
 @import "_hook.scss";
 @import "_suggests.scss";
 @import "_thumbnails.scss";
@@ -89,4 +90,15 @@ a {
 	display: table-cell;
 	vertical-align: middle;
 	text-align: center;
+}
+
+.configuration {
+	background: #000;
+	@include padding-leader;
+	@include padding-trailer;
+
+	h2 {
+		font-size: $base-font-size * 2;
+		@include trailer;
+	}
 }

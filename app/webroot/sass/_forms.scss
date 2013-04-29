@@ -1,0 +1,34 @@
+/*
+ * Forms
+ */
+.checkbox {
+	cursor: pointer;
+
+	input[type=checkbox] {
+		display: none;
+		
+		& + label:before {
+			display: inline-block;
+			content: '';
+			width: $base-font-size;
+			height: $base-font-size;
+			border: 1px solid #666;
+			background: #eee;
+			margin: 0 4px -2px 0;
+		}
+
+		&:checked + label:before {
+			background: url(checkbox-checked.png) #eee left top no-repeat;
+		}
+	}
+
+	label {
+		cursor: pointer;
+	}
+}
+
+.submit {
+	input[type=submit] {
+		@extend .btn;
+	}
+}
