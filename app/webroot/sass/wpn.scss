@@ -50,6 +50,7 @@ body {
 
 footer {
 	position: absolute;
+	left: 0;
 	bottom: 0;
 	height: $footer-height;
 	line-height: $base-font-size * 3;
@@ -81,6 +82,8 @@ a {
 }
 
 .wrapper {
+	position: relative;
+
 	display: table;
 	width: 100%;
 	height: 100%;
@@ -91,4 +94,14 @@ a {
 	display: table-cell;
 	vertical-align: middle;
 	text-align: center;
+}
+
+.next {
+	position: relative;
+	width: 100%;
+	text-align: center;
+}
+
+.center {
+	margin: 0 auto;
 }

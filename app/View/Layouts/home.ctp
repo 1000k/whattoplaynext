@@ -15,34 +15,20 @@
 	<?= $this->element('ga'); ?>
 </head>
 <body>
-	<div class="relative tall">
-		<?= $this->Element('drawer') ?>
+	<?= $this->Element('drawer') ?>
 
-		<div id="content">
-			<?= $this->Element('btn-drawer-trigger') ?>
+	<div id="content">
+		<?= $this->Element('btn-drawer-trigger') ?>
 
-			<div class="wrapper">
-				<div class="wrapper-inner">
-					<?= $this->element('btn-wpn') ?>
-				</div>
-			</div>
-				
-			<?= $this->element('footer') ?>
-		</div>
-
-<?php if (false): ?>
-		<div id="content" class="wrapper">
-
+		<div class="wrapper">
 			<div class="wrapper-inner">
-				<button class="btn drawer-trigger">open drawer</button>
-				<?= $this->element('btn_wpn') ?>
+				<?= $this->element('btn-wpn') ?>
 			</div>
 		</div>
-
+			
 		<?= $this->element('footer') ?>
 	</div>
-<?php endif; ?>
-		
+
 	<script>
 $(document).ready(function(){
 	var snapper = new Snap({

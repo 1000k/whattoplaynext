@@ -10,7 +10,7 @@
 	<?php
 		echo $this->Html->meta('icon');
 		echo $this->Html->css(['wpn', 'carousel.min', 'carousel-style.min']);
-		echo $this->Html->script(['jquery', 'jquery.mousewheel.min', 'jquery.hook.min', 'carousel.min', 'html5lightbox']);
+		echo $this->Html->script(['jquery', 'jquery.mousewheel.min', 'jquery.hook.min', 'carousel.min', 'html5lightbox', 'snap.min']);
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
@@ -30,13 +30,11 @@ $(document).ready(function(){
 <body>
 	<div class="hook" id="hook"></div>
 
-	<div class="container">
+	<div id="content" class="scrollable">
 		<article>
 			<?= $this->Session->flash(); ?>
 			<?= $this->fetch('content'); ?>
 		</article>
-
-		<?= $this->element('footer') ?>
 	</div>
 </body>
 </html>

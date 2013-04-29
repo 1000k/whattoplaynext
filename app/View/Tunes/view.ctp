@@ -45,8 +45,12 @@
 </section>
 <?php endif; ?>
 
-<section class="wrapper">
-	<div class="wrapper-inner">
-		<?= $this->element('btn_wpn') ?>
+<section class="next">
+	<div class="center">
+		<?= $this->element('btn-wpn') ?>
 	</div>
+
+	<?= $this->element('footer') ?>
 </section>
+
+
