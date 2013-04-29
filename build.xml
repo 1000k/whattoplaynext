@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project name="WhatToPlayNext" default="build">
- <property name="ignore_dirs_csv" value="${basedir}/app/Test/,${basedir}/app/tmp/,${basedir}/app/Plugin/,${basedir}/app/Vendor/,${basedir}/app/webroot/"/>
+ <property name="ignore_dirs_csv" value="${basedir}/app/Config/,${basedir}/app/Test/,${basedir}/app/tmp/,${basedir}/app/Plugin/,${basedir}/app/Vendor/,${basedir}/app/webroot/"/>
  <target name="build" depends="clean,prepare,cake"/>
  <target name="analysis" depends="phploc,pdepend,phpmd-ci,phpcs-ci,phpcpd,phpdoc,phpcb"/>
 
