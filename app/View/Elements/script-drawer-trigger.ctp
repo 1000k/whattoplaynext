@@ -1,7 +1,7 @@
 <script>
 $(document).ready(function(){
 	var snapper = new Snap({
-		element: $('#content')[0]
+		element: $('.drawer-swipable')[0]
 		, disable: 'right'
 		, slideIntent: 15
 	});

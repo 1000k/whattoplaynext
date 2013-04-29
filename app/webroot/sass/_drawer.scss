@@ -59,19 +59,23 @@ $btn-drawer-trigger: url(open.png) transparent center center no-repeat;
 // }
 
 #content {
-	background: #000 url(../img/bg_home.jpg) no-repeat center center fixed;
-	@include background-size(cover);
+	background: #000;
 	position: absolute;
 	height: 100%;
 
-	// background: #BFC7D8 url(drag.png) center 75% no-repeat;
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
 	z-index: 3;
 	@include translate3d('0, 0, 0');
-	// -webkit-transform: translate3d(0, 0, 0);
+}
+
+#content-home {
+	@extend #content;
+	
+	background: #000 url(../img/bg_home.jpg) no-repeat center center fixed;
+	@include background-size(cover);
 }
 
 .drawers {

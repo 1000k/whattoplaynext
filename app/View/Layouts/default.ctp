@@ -18,18 +18,19 @@
 	<?= $this->element('ga') ?>
 	<script>
 $(document).ready(function(){
-	$('#hook').hook({
-		locationHref: '<?= Router::url('/next', true) ?>'
-	});
+	// $('#hook').hook({
+	// 	locationHref: '<?= Router::url('/next', true) ?>'
+	// });
 	$(".m-carousel").carousel();
 });
 	</script>
 </head>
 <body>
+	<div class="hook" id="hook"></div>
+	
 	<?= $this->element('drawer') ?>
 
-	<div id="content" class="scrollable no-bg">
-		<div class="hook" id="hook"></div>
+	<div id="content" class="scrollable drawer-swipable">
 		<?= $this->element('btn-drawer-trigger') ?>
 
 		<?= $this->Session->flash(); ?>

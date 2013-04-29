@@ -17,7 +17,7 @@
 <body>
 	<?= $this->element('drawer') ?>
 
-	<div id="content" class="drawer-swipable">
+	<div id="content-home" class="drawer-swipable">
 		<div class="wrapper">
 			<?= $this->element('btn-drawer-trigger') ?>
 
