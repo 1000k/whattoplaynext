@@ -49,6 +49,7 @@ class TuneTest extends CakeTestCase {
 
 		$id = $this->Tune->getIdAtRandom();
 
+		// 0 < $id <= count($tunes)
 		$this->assertGreaterThan(0, $id);
 		$this->assertLessThanOrEqual(count($tunes), $id);
 	}
