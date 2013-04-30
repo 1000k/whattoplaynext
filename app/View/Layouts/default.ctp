@@ -10,20 +10,12 @@
 	<?php
 		echo $this->Html->meta('icon');
 		echo $this->Html->css(['wpn', 'carousel.min', 'carousel-style.min']);
-		echo $this->Html->script(['jquery', 'jquery.mousewheel.min', 'jquery.hook.min', 'carousel.min', 'html5lightbox', 'snap.min']);
+		echo $this->Html->script(['jquery', 'jquery.mousewheel.min', 'jquery.hook.min', 'carousel.min', 'html5lightbox', 'snap.min', 'wpn']);
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
 	<?= $this->element('ga') ?>
-	<script>
-$(document).ready(function(){
-	// $('#hook').hook({
-	// 	locationHref: '<?= Router::url('/next', true) ?>'
-	// });
-	$(".m-carousel").carousel();
-});
-	</script>
 </head>
 <body>
 	<div class="hook" id="hook"></div>
@@ -37,6 +29,12 @@ $(document).ready(function(){
 		<?= $this->fetch('content'); ?>
 	</div>
 
-	<?= $this->element('script-drawer-trigger') ?>
+	<script>
+$(document).ready(function(){
+	<?= $this->element('init-script-drawer-trigger') ?>
+	<?= $this->element('init-script-carousel') ?>
+	<?= $this->element('init-script-wpn') ?>
+});
+	</script>
 </body>
 </html>

@@ -1,0 +1,1 @@
+$(".m-carousel").carousel();

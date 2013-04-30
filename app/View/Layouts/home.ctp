@@ -7,7 +7,7 @@
 	<?php
 		echo $this->Html->meta('icon');
 		echo $this->Html->css(['wpn']);
-		echo $this->Html->script(['jquery', 'snap.min']);
+		echo $this->Html->script(['jquery', 'wpn', 'snap.min']);
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
@@ -30,5 +30,6 @@
 	</div>
 
 	<?= $this->element('script-drawer-trigger') ?>
+	<?= $this->element('script-wpn') ?>
 </body>
 </html>

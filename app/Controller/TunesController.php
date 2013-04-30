@@ -43,7 +43,13 @@ class TunesController extends AppController {
 		$enabled_books = isset($this->request->data['enabled_books']) ? $this->request->data['enabled_books'] : null;
 
 		if ($this->RequestHandler->isAjax()) {
-			$result = $this->Tune->getIdAtRandom($enabled_books);
+			$tune_id = $this->Tune->getIdAtRandom($enabled_books);
+			$url = Router::url("/tunes/view/{$tune_id}", true);
+
+			$result = [
+				'result' => 'OK',
+				'url' => $url
+			];
 
 			$this->set('result', $result);
 			$this->set('_serialize', 'result');

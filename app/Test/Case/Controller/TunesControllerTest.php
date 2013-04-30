@@ -58,9 +58,10 @@ class TunesControllerTest extends ControllerTestCase {
 			]
 		]);
 
+		$stub_tune_id = 1;
 		$Tunes->Tune->expects($this->once())
 			->method('getIdAtRandom')
-			->will($this->returnValue([2, 3]));
+			->will($this->returnValue($stub_tune_id));
 
 		$Tunes->RequestHandler
 			->expects($this->once())
@@ -75,7 +76,9 @@ class TunesControllerTest extends ControllerTestCase {
 			]
 		);
 
-		$this->assertEquals($result, [2, 3]);
+		$expected_url = Router::url("/tunes/view/{$stub_tune_id}", true);
+		$this->assertEquals($result['result'], 'OK');
+		$this->assertEquals($result['url'], $expected_url);
 	}
 
 }

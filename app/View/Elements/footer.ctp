@@ -1,10 +1,10 @@
 <footer>
 	<p><small>&copy; <?= $this->Html->link('What To Play Next?', '/') ?></small></p>
 	<div class="social-icons">
-		<?= $this->element('twitter_button') ?>
-		<?= $this->element('fb_like_button') ?>
+		<?= $this->element('btn-twitter') ?>
+		<?= $this->element('btn-fb-like') ?>
 	</div>
 
-	<?= $this->element('twitter_script') ?>
-	<?= $this->element('fb_like_script') ?>
+	<?= $this->element('script-twitter') ?>
+	<?= $this->element('script-fb') ?>
 </footer>
