@@ -2,7 +2,7 @@
 #################################################
 .sass-cache/
 #/app/Config/database.php
-/app/tmp
+
 /app/webroot/img/samples/*
 /build
 /dist
