@@ -42,12 +42,12 @@ class TuneTest extends CakeTestCase {
 	}
 
 /**
- * @covers Tune::random
+ * @covers Tune::getIdAtRandom
  */
-	public function testRandom() {
+	public function testGetIdRandom() {
 		$tunes = $this->tuneFixture->records;
 
-		$id = $this->Tune->random();
+		$id = $this->Tune->getIdAtRandom();
 
 		$this->assertGreaterThan(0, $id);
 		$this->assertLessThanOrEqual(count($tunes), $id);

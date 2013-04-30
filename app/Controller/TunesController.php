@@ -40,6 +40,10 @@ class TunesController extends AppController {
 	}
 
 	public function next() {
-		return $this->redirect(['controller' => 'tunes', 'action' => 'view', $this->Tune->random()]);
+		return $this->redirect([
+			'controller' => 'tunes',
+			'action' => 'view',
+			$this->Tune->getIdAtRandom()
+		]);
 	}
 }
