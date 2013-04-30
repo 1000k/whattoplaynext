@@ -108,4 +108,12 @@ CakeLog::config('error', array(
 	'file' => 'error',
 ));
 
+Configure::write('Cookie', [
+	'name' => 'wpn',
+	'key' => 'Pf047y==}0\~ST.m{Mn$c=0jO(0lU#P]',
+	'time' => '7 days',
+	'secure' => false,
+	'httpOnly' => true,
+]);
+
 CakePlugin::load(['DebugKit', 'Migrations']);

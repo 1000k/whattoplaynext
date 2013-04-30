@@ -82,14 +82,27 @@ class Tune extends AppModel {
 
 /**
  * Picks up Tune.id randomly.
+ * 
+ * If $Cookie['Config.enabled_books'] is set, just picked up from those books.
  *
  * @return integer Tune.id
  */
 	public function getIdAtRandom() {
-		$ids = $this->find('list', [
-			'fields' => ['Tune.id'],
-			'recursive' => 0
-		]);
+		if (isset($_COOKIE[Configure::read('Cookie.name')]['Config']['enabled_books'])) {
+			$ids = $this->BooksTune->find('list', [
+				'conditions' => [
+					'BooksTune.book_id' => $_COOKIE[Configure::read('Cookie.name')]['Config']['enabled_books']
+				],
+				'fields' => ['BooksTune.tune_id'],
+				'recursive' => 0
+			]);
+		} else {
+			$ids = $this->find('list', [
+				'fields' => ['Tune.id'],
+				'recursive' => 0
+			]);
+		}
+			
 		return $ids[array_rand($ids, 1)];
 	}
 

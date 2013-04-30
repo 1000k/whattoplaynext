@@ -1,5 +1,7 @@
 <?php
 App::uses('Tune', 'Model');
+// App::uses('ComponentCollection', 'Controller');
+// App::uses('CookieComponent', 'Controller/Component');
 
 /**
  * Tune Test Case
@@ -28,6 +30,9 @@ class TuneTest extends CakeTestCase {
 		parent::setUp();
 		$this->Tune = ClassRegistry::init('Tune');
 		$this->tuneFixture = new TuneFixture();
+
+		// $Collection = new ComponentCollection();
+		// $this->CookieComponent = new CookieComponent($Collection);
 	}
 
 /**
@@ -36,7 +41,7 @@ class TuneTest extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		unset($this->Tune);
+		unset($this->Tune, $_COOKIE);
 
 		parent::tearDown();
 	}
@@ -52,6 +57,29 @@ class TuneTest extends CakeTestCase {
 		// 0 < $id <= count($tunes)
 		$this->assertGreaterThan(0, $id);
 		$this->assertLessThanOrEqual(count($tunes), $id);
+	}
+
+/**
+ * @covers Tune::getIdAtRandom
+ */
+	public function testGetIdRandomConcerningConfigurationWhichToPickUp() {
+		$enabled_book_ids = [1, 2];
+		$_COOKIE[Configure::read('Cookie.name')]['Config']['enabled_books'] = $enabled_book_ids;
+
+		$actual_tune_id = $this->Tune->getIdAtRandom();
+
+		$picked_tunes = $this->Tune->BooksTune->find('list', [
+			'fields' => ['BooksTune.tune_id'],
+			'conditions' => ['BooksTune.book_id' => $enabled_book_ids]
+		]);
+		$this->assertContains($actual_tune_id, $picked_tunes);
+
+		// Asserting not picked up from disabled book.
+		$maybe_not_picked_tunes = $this->Tune->BooksTune->find('list', [
+			'fields' => ['BooksTune.tune_id'],
+			'conditions' => ['BooksTune.book_id' => 3]
+		]);
+		$this->assertNotContains($actual_tune_id, $maybe_not_picked_tunes);
 	}
 
 /**

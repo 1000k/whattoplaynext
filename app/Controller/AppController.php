@@ -36,12 +36,12 @@ class AppController extends Controller {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Cookie->name = 'wpn';
-		$this->Cookie->key = 'Pf047y==}0\~ST.m{Mn$c=0jO(0lU#P]';
-		$this->Cookie->time = '7 days';			// or '1 hour'
+		$this->Cookie->name = Configure::read('Cookie.name');
+		$this->Cookie->key = Configure::read('Cookie.key');
+		$this->Cookie->time = Configure::read('Cookie.time');
 		// $this->Cookie->path = '/';
 		// $this->Cookie->domain = 'example.com';
-		$this->Cookie->secure = false;
-		$this->Cookie->httpOnly = false;
+		$this->Cookie->secure = Configure::read('Cookie.secure');
+		$this->Cookie->httpOnly = Configure::read('Cookie.httpOnly');
 	}
 }
