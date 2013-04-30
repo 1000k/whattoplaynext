@@ -32,16 +32,5 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-	public $components = ['DebugKit.Toolbar', 'Cookie'];
-
-	public function beforeFilter() {
-		parent::beforeFilter();
-		$this->Cookie->name = Configure::read('Cookie.name');
-		$this->Cookie->key = Configure::read('Cookie.key');
-		$this->Cookie->time = Configure::read('Cookie.time');
-		// $this->Cookie->path = '/';
-		// $this->Cookie->domain = 'example.com';
-		$this->Cookie->secure = Configure::read('Cookie.secure');
-		$this->Cookie->httpOnly = Configure::read('Cookie.httpOnly');
-	}
+	public $components = ['DebugKit.Toolbar'];
 }

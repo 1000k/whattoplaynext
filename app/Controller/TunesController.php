@@ -6,7 +6,7 @@ App::uses('AppController', 'Controller');
  * @property Tune $Tune
  */
 class TunesController extends AppController {
-
+	public $components = ['RequestHandler'];
 /**
  * index method
  *
@@ -40,10 +40,22 @@ class TunesController extends AppController {
 	}
 
 	public function next() {
+		$enabled_books = isset($this->request->data['enabled_books']) ? $this->request->data['enabled_books'] : null;
+
+		if ($this->RequestHandler->isAjax()) {
+			$result = $this->Tune->getIdAtRandom($enabled_books);
+
+			$this->set('result', $result);
+			$this->set('_serialize', 'result');
+
+			return $result;
+		}
+
+		// return true;
 		return $this->redirect([
 			'controller' => 'tunes',
 			'action' => 'view',
-			$this->Tune->getIdAtRandom()
+			$this->Tune->getIdAtRandom($enabled_books)
 		]);
 	}
 }
