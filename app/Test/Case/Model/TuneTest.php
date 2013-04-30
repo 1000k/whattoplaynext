@@ -1,7 +1,5 @@
 <?php
 App::uses('Tune', 'Model');
-// App::uses('ComponentCollection', 'Controller');
-// App::uses('CookieComponent', 'Controller/Component');
 
 /**
  * Tune Test Case
@@ -30,9 +28,6 @@ class TuneTest extends CakeTestCase {
 		parent::setUp();
 		$this->Tune = ClassRegistry::init('Tune');
 		$this->tuneFixture = new TuneFixture();
-
-		// $Collection = new ComponentCollection();
-		// $this->CookieComponent = new CookieComponent($Collection);
 	}
 
 /**
@@ -64,9 +59,8 @@ class TuneTest extends CakeTestCase {
  */
 	public function testGetIdRandomConcerningConfigurationWhichToPickUp() {
 		$enabled_book_ids = [1, 2];
-		$_COOKIE[Configure::read('Cookie.name')]['Config']['enabled_books'] = $enabled_book_ids;
-
-		$actual_tune_id = $this->Tune->getIdAtRandom();
+		
+		$actual_tune_id = $this->Tune->getIdAtRandom($enabled_book_ids);
 
 		$picked_tunes = $this->Tune->BooksTune->find('list', [
 			'fields' => ['BooksTune.tune_id'],
