@@ -12,15 +12,15 @@
 			'carousel-style.min'
 		]);
 		echo $this->Html->script([
-			'jquery/jquery',
-			'jquery-mousewheel/jquery.mousewheel',
-			'underscore/underscore',
-			'backbone/backbone',
-			'backbone.localStorage/backbone.localStorage',
-			'hook/hook.min',
-			'mobify-modules/carousel/src/carousel',
-			'html5lightbox',
-			'snap/snap.min',
+			'vendor/jquery/jquery',
+			'vendor/jquery-mousewheel/jquery.mousewheel',
+			'vendor/underscore/underscore',
+			'vendor/backbone/backbone',
+			'vendor/backbone.localStorage/backbone.localStorage',
+			'vendor/hook/hook.min',
+			'vendor/mobify-modules/carousel/src/carousel',
+			'vendor/html5lightbox',
+			'vendor/snap/snap.min',
 			'wpn'
 		]);
 		echo $this->fetch('meta');
@@ -44,7 +44,9 @@
 		<?= $this->element('footer') ?>
 	</div>
 
-	<?= $this->element('script-drawer-trigger') ?>
-	<?= $this->element('script-wpn') ?>
+	<script>
+		<?= $this->element('init-script-drawer-trigger') ?>
+		<?= $this->element('init-script-wpn') ?>
+	</script>
 </body>
 </html>

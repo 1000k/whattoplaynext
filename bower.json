@@ -9,10 +9,12 @@
   , "dependencies": {
     "backbone": "1.0.0"
     , "backbone.localStorage": "1.1.0"
+    , "json2": "latest"
     , "underscore": "1.4.4"
     , "jquery": "< 2.0.0"
     , "jquery-mousewheel": "latest"
     , "snap": "git://github.com/jakiestfu/Snap.js.git"
+    , "jPanelMenu": "git://github.com/acolangelo/jPanelMenu.git"
     , "hook": "git://github.com/jordansinger/Hook.js.git"
     , "mobify-modules": "git://github.com/mobify/mobify-modules.git"
   }
