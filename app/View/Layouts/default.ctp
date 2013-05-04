@@ -15,15 +15,15 @@
 			'carousel-style.min'
 		]);
 		echo $this->Html->script([
-			'jquery/jquery',
-			'jquery-mousewheel/jquery.mousewheel',
-			'underscore/underscore',
-			'backbone/backbone',
-			'backbone.localStorage/backbone.localStorage',
-			'hook/hook.min',
-			'mobify-modules/carousel/src/carousel',
-			'html5lightbox',
-			'snap/snap.min',
+			'vendor/jquery/jquery',
+			'vendor/jquery-mousewheel/jquery.mousewheel',
+			'vendor/underscore/underscore',
+			'vendor/backbone/backbone',
+			'vendor/backbone.localStorage/backbone.localStorage',
+			'vendor/hook/hook.min',
+			'vendor/mobify-modules/carousel/src/carousel',
+			'vendor/html5lightbox',
+			'vendor/snap/snap.min',
 			'wpn'
 		]);
 		echo $this->fetch('meta');
@@ -32,7 +32,7 @@
 	?>
 	<?= $this->element('ga') ?>
 </head>
-<body>
+<body data-snap-ignore="true">
 	<div class="hook" id="hook"></div>
 	
 	<?= $this->element('drawer') ?>

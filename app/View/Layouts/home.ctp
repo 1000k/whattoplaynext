@@ -29,7 +29,7 @@
 	?>
 	<?= $this->element('ga'); ?>
 </head>
-<body>
+<body data-snap-ignore="true">
 	<?= $this->element('drawer') ?>
 
 	<div id="content-home" class="drawer-swipable">
