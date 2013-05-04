@@ -14,7 +14,6 @@
     , "jquery": "< 2.0.0"
     , "jquery-mousewheel": "latest"
     , "snap": "git://github.com/jakiestfu/Snap.js.git"
-    , "jPanelMenu": "git://github.com/acolangelo/jPanelMenu.git"
     , "hook": "git://github.com/jordansinger/Hook.js.git"
     , "mobify-modules": "git://github.com/mobify/mobify-modules.git"
   }
