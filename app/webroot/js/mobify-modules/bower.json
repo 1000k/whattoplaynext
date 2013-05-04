@@ -1,0 +1,9 @@
+{
+  "name": "mobify-modules",
+  "version": "0.0.0",
+  "commit": "9c595774cb0ee61d05ff1a3a9069ea0800cd2c86",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mobify/mobify-modules.git"
+  }
+}

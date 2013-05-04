@@ -1,0 +1,9 @@
+{
+  "name": "hook",
+  "version": "0.0.0",
+  "commit": "7bc1f8139b9f4939de3df1062c3906c3dbd056d2",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jordansinger/Hook.js.git"
+  }
+}
