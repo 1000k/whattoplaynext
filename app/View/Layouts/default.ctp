@@ -17,8 +17,8 @@
 		echo $this->Html->script([
 			'jquery/jquery',
 			'jquery-mousewheel/jquery.mousewheel',
-			'backbone/backbone-min',
 			'underscore/underscore-min',
+			'backbone/backbone-min',
 			'hook/hook.min',
 			'mobify-modules/carousel/src/carousel',
 			'html5lightbox',
