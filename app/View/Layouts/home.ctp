@@ -43,8 +43,8 @@
 			</div>
 		</div>
 
-		<script type="text/template" id="template-tunes">
 		<div id="tunes" class="scrollable drawer-swipable">
+		<script type="text/template" id="template-tunes">
 			<?php
 				// echo $this->element('templates/tunes-title');
 				// echo $this->element('templates/tunes-published');
@@ -100,8 +100,8 @@
 			<section class="next trailer-6">
 				<?= $this->element('btn-wpn') ?>
 			</section>
-		</div>
 		</script>
+		</div>
 
 		<?= $this->element('footer') ?>
 	</div>

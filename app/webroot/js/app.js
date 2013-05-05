@@ -60,6 +60,8 @@ $(function() {
 		},
 
 		initialize: function() {
+			this.$tunes = this.$('#tunes');
+
 			this.listenTo(app.Tunes, 'sync', this.render);
 		},
 
@@ -72,10 +74,12 @@ $(function() {
 			console.log(attrs);
 
 			$('#home').hide();
-			this.$el.html(this.template(attrs));
+			this.$tunes.html(this.template(attrs));
 			$('#tunes').show();
 
+			// Attach triggers on elements.
 			$(".m-carousel").carousel();
+			$(".html5lightbox").html5lightbox();
 
 			return this;
 		}
@@ -108,7 +112,7 @@ $(function() {
 	//------------------------
 	var Workspace = Backbone.Router.extend({
 		routes: {
-			'next': 'next'
+			'next': 'next'		// #next
 		},
 
 		next: function() {
