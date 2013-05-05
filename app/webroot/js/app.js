@@ -11,17 +11,39 @@ $(function() {
 	});
 
 	app.Tune = Backbone.Model.extend({
+		urlRoot: '/next',
 		defaults: {
+			id: '',
 			name: '',
+			Book: [],
+			Sample: []
+		},
+
+		initialize: function() {
+			this.on('sync', function(model) {
+				console.info('Synced.');
+				console.log(model.get('name'));
+			});
+		},
+
+		parse: function(response) {
+			this.set('id', response.Tune.id);
+			this.set('name', response.Tune.name);
+			this.set('Book', response.Book);
+			this.set('Sample', response.Sample);
 		}
 	});
 
 	//------------------------
 	// Collections
 	//------------------------
-	app.ConfigCollection = Backbone.Collection.extend({
+	var ConfigCollection = Backbone.Collection.extend({
 		model: app.Config,
 		localStorage: new Backbone.LocalStorage("ConfigCollection")
+	});
+
+	var TuneCollection = Backbone.Collection.extend({
+		model: app.Tune
 	});
 
 	//------------------------
@@ -31,18 +53,25 @@ $(function() {
 	app.AppView = Backbone.View.extend({
 		el: $('body'),
 		events: {
-			'click .btn-wpn': 'next'
+			'click .btn-wpn': 'goNext'
 		},
 
-		next: function() {
+		initialize: function() {
+			this.listenTo(app.Tunes, 'sync', this.render);
+		},
+
+		goNext: function() {
 			console.log('.btn-wpn clicked.');
-			this.render();
+			
+			app.Tunes.create();
 		},
 
 		render: function() {
 			console.log('AppView.render fired.');
-			$('#home').hide('slow');
-			$('#tunes').show('slow');
+			$('#home').hide();
+			$('#tunes').show();
+			// console.log('app.Tunes.length: ' + app.Tunes.length);
+			console.log(app.Tunes);
 		}
 	});
 
@@ -86,5 +115,6 @@ $(function() {
 	app.Router = new Workspace();
 	Backbone.history.start();
 
+	app.Tunes = new TuneCollection();
 	new app.AppView();
 });
