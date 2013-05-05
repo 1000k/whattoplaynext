@@ -19,12 +19,12 @@ $(function() {
 			Sample: []
 		},
 
-		initialize: function() {
-			this.on('sync', function(model) {
-				console.info('Synced.');
-				console.log(model.get('name'));
-			});
-		},
+		// initialize: function() {
+		// 	this.on('sync', function(model) {
+		// 		console.info('Synced.');
+		// 		console.log(model.get('name'));
+		// 	});
+		// },
 
 		parse: function(response) {
 			this.set('id', response.Tune.id);
@@ -39,7 +39,13 @@ $(function() {
 	//------------------------
 	var ConfigCollection = Backbone.Collection.extend({
 		model: app.Config,
-		localStorage: new Backbone.LocalStorage("ConfigCollection")
+
+		localStorage: new Backbone.LocalStorage("ConfigCollection"),
+
+		initialize: function() {
+			
+		}
+
 	});
 
 	var TuneCollection = Backbone.Collection.extend({
@@ -87,15 +93,23 @@ $(function() {
 
 	// Config view
 	app.ConfigView = Backbone.View.extend({
-		el:  $('.drawers'),
+		el: $('.drawers'),
+
+		events: {
+			'click .checkbox': 'uhouho'
+		},
+
+		uhouho: function() {
+			console.log('uhouho');
+		},
 
 		initialize: function() {
 			_.bindAll(this, 'render');
 
-			this.checkBoxes = this.$('#ConfigIndexForm')[0]
+			this.checkBoxes = this.$("input[type=checkbox]").filter(function() { return this.id.match(/ConfigEnabledBooks/); });
 
 			this.enabled_books = [1, 2, 3];
-			this.collection = new app.ConfigCollection();
+			this.collection = new ConfigCollection();
 
 			this.render();
 		},
@@ -117,7 +131,6 @@ $(function() {
 
 		next: function() {
 			console.log('next route');
-
 		}
 	});
 
@@ -125,6 +138,9 @@ $(function() {
 	app.Router = new Workspace();
 	Backbone.history.start();
 
+	app.Configs = new ConfigCollection();
 	app.Tunes = new TuneCollection();
+
 	new app.AppView();
+	new app.ConfigView();
 });

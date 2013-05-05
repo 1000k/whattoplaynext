@@ -1,4 +1,4 @@
-<footer>
+<footer class="footer-home">
 	<p><small>&copy; <?= $this->Html->link('What To Play Next?', '/') ?></small></p>
 	<div class="social-icons">
 		<?= $this->element('btn-twitter') ?>

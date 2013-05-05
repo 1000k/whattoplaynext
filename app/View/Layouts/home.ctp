@@ -41,15 +41,12 @@
 					<?= $this->element('btn-wpn') ?>
 				</div>
 			</div>
+
+			<?= $this->element('footer') ?>
 		</div>
 
 		<div id="tunes" class="scrollable drawer-swipable">
 		<script type="text/template" id="template-tunes">
-			<?php
-				// echo $this->element('templates/tunes-title');
-				// echo $this->element('templates/tunes-published');
-				// echo $this->element('templates/tunes-samples');
-			?>
 			<section class="title">
 				<%- name %>
 			</section>
@@ -95,15 +92,16 @@
 				</div>
 			</section>
 			<% } %>
-			
 
-			<section class="next trailer-6">
+			<section class="next">
 				<?= $this->element('btn-wpn') ?>
 			</section>
+
+			<footer class="footer">
+				<p><small>&copy; <?= $this->Html->link('What To Play Next?', '/') ?></small></p>
+			</footer>
 		</script>
 		</div>
-
-		<?= $this->element('footer') ?>
 	</div>
 
 	<script>

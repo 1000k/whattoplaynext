@@ -48,15 +48,20 @@ body {
 	}
 }
 
-footer {
-	position: absolute;
-	left: 0;
-	bottom: 0;
+.footer {
 	height: $footer-height;
 	line-height: $base-font-size * 3;
 	width: 100%;
 	text-align: center;
 	margin: 0 auto;
+}
+
+.footer-home {
+	@extend .footer;
+
+	position: absolute;
+	left: 0;
+	bottom: 0;
 }
 
 #content {
@@ -68,7 +73,7 @@ footer {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	z-index: 3;
+	// z-index: 3;
 	@include translate3d('0, 0, 0');
 }
 

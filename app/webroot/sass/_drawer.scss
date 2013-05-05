@@ -16,7 +16,7 @@ $btn-drawer-trigger: url(open.png) transparent center center no-repeat;
 	width: 44px;
 	height: 44px;
 
-	z-index: 10;
+	z-index: 1;
 
 	&:hover,
 	&:active {
@@ -81,12 +81,12 @@ $btn-drawer-trigger: url(open.png) transparent center center no-repeat;
 	-webkit-overflow-scrolling: touch;
 }
 .left-drawer {
-	z-index: 2;
+	// z-index: 2;
 }
 .right-drawer {
 	left: auto;
 	right: 0;
-	z-index: 1;
+	// z-index: 1;
 }
 
 .snapjs-right .left-drawer {
