@@ -51,7 +51,10 @@ $(function() {
 	//------------------------
 	// AppView: Top level view
 	app.AppView = Backbone.View.extend({
-		el: $('body'),
+		el: $('#content'),
+
+		template: _.template($('#template-tunes').html()),
+
 		events: {
 			'click .btn-wpn': 'goNext'
 		},
@@ -61,17 +64,20 @@ $(function() {
 		},
 
 		goNext: function() {
-			console.log('.btn-wpn clicked.');
-			
 			app.Tunes.create();
 		},
 
 		render: function() {
-			console.log('AppView.render fired.');
+			var attrs = app.Tunes.pop().attributes;
+			console.log(attrs);
+
 			$('#home').hide();
+			this.$el.html(this.template(attrs));
 			$('#tunes').show();
-			// console.log('app.Tunes.length: ' + app.Tunes.length);
-			console.log(app.Tunes);
+
+			$(".m-carousel").carousel();
+
+			return this;
 		}
 	});
 

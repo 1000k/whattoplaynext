@@ -43,48 +43,65 @@
 			</div>
 		</div>
 
+		<script type="text/template" id="template-tunes">
 		<div id="tunes" class="scrollable drawer-swipable">
+			<?php
+				// echo $this->element('templates/tunes-title');
+				// echo $this->element('templates/tunes-published');
+				// echo $this->element('templates/tunes-samples');
+			?>
 			<section class="title">
-				title
+				<%- name %>
 			</section>
 
 			<section class="published">
 				<h2>Ýd¤Ã¤Æ¤Þ¤¹</h2>
+
 				<ul class="thumbnails">
+					<% _.each(Book, function(val, i) { %>
 					<li class="thumbnail">
-						<a href="%url_amazon%" target="_blank">
-							<img src="%book.image_path%" alt="%book.name%">
-							<p>%book.name%<img src="%book.url_amazon_conversion_image%" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;"></p>
+						<a href="<%- val.url_amazon %>" target="_blank">
+							<img src="<?= IMAGES_URL . 'books/' ?><%- val.image_path %>" alt="<%- val.name %>">
+							<p><%- val.name %><img src="<%- val.url_amazon_conversion_image %>" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;"></p>
 						</a>
 					</li>
+					<% }); %>
 				</ul>
 			</section>
 
+			<% if (Sample.length > 0) { %>
 			<section class="samples">
 				<h2>¤³¤ó¤ÊÇú¤Ç¤¹</h2>
 
 				<div class="carousel-wrapper">
 					<div class="m-carousel m-fluid m-carousel-photos">
 						<div class="m-carousel-inner">
+							<% _.each(Sample, function(val) { %>
 							<div class="m-item">
-								<img src="%sample.thumbnail%" alt="%sample.title%" style="width:100%">
-								<a href="http://www.youtube.com/embed/%sample.url%" title="%sample.title%" class="html5lightbox">
-									<p class="m-caption">%sample.title%</p>
+								<img src="<?= IMAGES_URL . 'samples/' ?><%- val.thumbnail %>" alt="<%- val.title %>" style="width:100%">
+								<a href="http://www.youtube.com/embed/<%- val.url %>" title="<%- val.title %>" class="html5lightbox">
+									<p class="m-caption"><%- val.title %></p>
 								</a>
 							</div>
+							<% }); %>
 						</div>
 
 						<div class="m-carousel-controls m-carousel-bulleted">
-							<a href="#" data-slide="%i%">%i%</a>
+							<% for (var i = 1; i <= Sample.length; i++) { %>
+							<a href="#" data-slide="<%- i %>"><%- i %></a>
+							<% } %>
 						</div>
 					</div>
 				</div>
 			</section>
+			<% } %>
+			
 
 			<section class="next trailer-6">
 				<?= $this->element('btn-wpn') ?>
 			</section>
 		</div>
+		</script>
 
 		<?= $this->element('footer') ?>
 	</div>
