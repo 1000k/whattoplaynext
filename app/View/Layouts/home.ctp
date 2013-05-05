@@ -21,7 +21,7 @@
 			'vendor/mobify-modules/carousel/src/carousel',
 			'vendor/html5lightbox',
 			'vendor/snap/snap.min',
-			'wpn'
+			'app'
 		]);
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -46,7 +46,6 @@
 
 	<script>
 		<?= $this->element('init-script-drawer-trigger') ?>
-		<?= $this->element('init-script-wpn') ?>
 	</script>
 </body>
 </html>
