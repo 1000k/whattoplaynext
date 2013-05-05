@@ -10,6 +10,12 @@ $(function() {
 		}
 	});
 
+	app.Tune = Backbone.Model.extend({
+		defaults: {
+			name: '',
+		}
+	});
+
 	//------------------------
 	// Collections
 	//------------------------
@@ -30,6 +36,11 @@ $(function() {
 
 		next: function() {
 			console.log('.btn-wpn clicked.');
+			this.render();
+		},
+
+		render: function() {
+			console.log('AppView.render fired.');
 			$('#home').hide('slow');
 			$('#tunes').show('slow');
 		}

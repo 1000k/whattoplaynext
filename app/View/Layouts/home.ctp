@@ -42,7 +42,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div id="tunes" class="scrollable drawer-swipable">
 			<section class="title">
 				title
@@ -85,7 +85,7 @@
 				<?= $this->element('btn-wpn') ?>
 			</section>
 		</div>
-			
+
 		<?= $this->element('footer') ?>
 	</div>
 
