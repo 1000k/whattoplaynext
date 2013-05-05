@@ -7,10 +7,6 @@
 			echo $this->Form->select('enabled_books', $books, ['multiple' => 'checkbox']);
 
 			echo $this->Form->end();
-			// echo $this->Form->end([
-			// 	'label' => 'Save',
-			// 	'div' => ['class' => 'update-config submit']
-			// ]);
 		?>
 	</div>
 
