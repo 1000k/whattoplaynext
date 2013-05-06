@@ -14,8 +14,7 @@ $(function() {
 	App.Model.Config = Backbone.Model.extend({
 		defaults: {
 			// FIXME This values should be synced with server-side ones.
-			enabled_books: [1, 2, 3],
-			modified: new Date().getTime()
+			enabled_books: [1, 2, 3]
 		},
 
 		localStorage: new Backbone.LocalStorage('Config'),
@@ -69,26 +68,6 @@ $(function() {
 	//------------------------
 	// Collections
 	//------------------------
-	// ConfigCollection acts as Singleton to store only one Config model.
-	// App.ConfigCollection = Backbone.Collection.extend({
-	// 	model: App.Model.Config,
-
-	// 	initialize: function() {
-	// 		console.log('ConfigCollection.initialize()');
-
-	// 		if (!this.models.length) {
-	// 			console.info('ConfigCollection is empty so added new model.');
-	// 			this.add(new App.Model.Config());
-	// 		} else {
-	// 			console.info('ConfigCollection has models.');
-	// 			// console.log(this.models.length);
-	// 		}
-
-	// 		// console.log(this.models);
-	// 	}
-
-	// });
-
 	App.TuneCollection = Backbone.Collection.extend({
 		model: App.Model.Tune
 	});
@@ -144,8 +123,6 @@ $(function() {
 
 			this.model = new App.Model.Config();
 
-			this.listenTo(this.model, 'all', this.mojamoja);
-
 			_.bindAll(this, 'render');
 
 			this.render();
@@ -160,18 +137,11 @@ $(function() {
 			);
 		},
 
-		mojamoja: function(eventName) {
-			console.info('ConfigView.model: ' + eventName);
-		},
-
 		check: function() {
 			// console.log(this.model.attributes);
-
 			this.model.save({
-				enabled_books: this._getCheckedBoxes(),
-				modified: new Date().getTime()
+				enabled_books: this._getCheckedBoxes()
 			});
-
 		},
 
 		render: function() {
