@@ -20,12 +20,12 @@ $(function() {
 
 		initialize: function() {
 			console.log('app.Config.initialize()');
-			// console.log(this.localStorage.findAll(this));
+			console.log(this.localStorage.records);
 
-			if (this.localStorage.length < 1) {
+			if (this.localStorage.records.length < 1) {
 				console.info('There is no Config in local storage so added new one.');
 				this.save(this.defaults);
-				console.log(this.localStorage.findAll(this));
+				console.log(this.get('Config'));
 			}
 		}
 	});
@@ -51,21 +51,21 @@ $(function() {
 	// Collections
 	//------------------------
 	// ConfigCollection acts as Singleton to store only one Config model.
-	// app.ConfigCollection = Backbone.Collection.extend({
-	// 	model: app.Config,
+	app.ConfigCollection = Backbone.Collection.extend({
+		model: app.Config,
 
-	// 	initialize: function() {
-	// 		console.log('ConfigCollection.initialize()');
+		initialize: function() {
+			console.log('ConfigCollection.initialize()');
 
-	// 		if (!this.models.length) {
-	// 			console.info('ConfigCollection is empty so added new model.');
-	// 			this.add(new app.Config());
-	// 		}
+			if (!this.models.length) {
+				console.info('ConfigCollection is empty so added new model.');
+				this.add(new app.Config());
+			}
 
-	// 		console.log(this.models);
-	// 	}
+			console.log(this.models);
+		}
 
-	// });
+	});
 
 	app.TuneCollection = Backbone.Collection.extend({
 		model: app.Tune
@@ -121,12 +121,20 @@ $(function() {
 		initialize: function(options) {
 			console.info('app.ConfigView.initialize()');
 
-			this.model = new app.Config();
+			this.collection = app.Configs;
+
+			this.listenTo(this.collection, 'change', this.mojamoja);
 
 			_.bindAll(this, 'render');
 
+			console.log(this.collection.last());
+
 			// this.checkBoxes = this.$("input[type=checkbox]").filter(function() { return this.id.match(/ConfigEnabledBooks/); });
 			this.render();
+		},
+
+		mojamoja: function() {
+			console.info('ConfigView.collection is changed!');
 		},
 
 		check: function() {
@@ -143,7 +151,6 @@ $(function() {
 
 			});
 			// this.model.save();
-			console.log(this.model);
 		},
 
 		render: function() {
@@ -170,7 +177,7 @@ $(function() {
 	app.Router = new Workspace();
 	Backbone.history.start();
 
-	// app.Configs = new app.ConfigCollection();
+	app.Configs = new app.ConfigCollection();
 	app.Tunes = new app.TuneCollection();
 
 	new app.AppView();
