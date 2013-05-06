@@ -60,6 +60,9 @@ $(function() {
 			if (!this.models.length) {
 				console.info('ConfigCollection is empty so added new model.');
 				this.add(new app.Config());
+			} else {
+				console.info('ConfigCollection has models.');
+				console.log(this.models.length);
 			}
 
 			console.log(this.models);
@@ -125,12 +128,9 @@ $(function() {
 
 			this.listenTo(this.collection, 'change', this.mojamoja);
 
-			_.bindAll(this, 'render');
+			// _.bindAll(this, 'render');
+			// console.log(this.collection.last().attributes);
 
-			console.log(this.collection.last());
-			console.log(this.collection.last().attributes);
-
-			// this.checkBoxes = this.$("input[type=checkbox]").filter(function() { return this.id.match(/ConfigEnabledBooks/); });
 			this.render();
 		},
 
@@ -140,18 +140,21 @@ $(function() {
 
 		check: function() {
 			console.log('uhouho');
+			console.log(this.collection.models);
 
 			var books = _.toArray(
 				$('input[name="data[Config][enabled_books][]"]:checked')
 				.map(function() { return parseInt(this.value); })
 			);
 
-			this.model.save({
+			var conf = this.collection.last();
+
+			conf.set({
 				enabled_books: books,
 				modified: new Date().getTime()
-
 			});
-			// this.model.save();
+			console.log(conf);
+			this.collection.save();
 		},
 
 		render: function() {
@@ -183,4 +186,10 @@ $(function() {
 
 	new app.AppView();
 	new app.ConfigView();
+
+
+	$('.checkbox').on('click', function() {
+		var $cb = $('input[type=checkbox]', this);
+		$cb.prop('checked', !$cb.prop('checked'));
+	});
 });
