@@ -128,6 +128,7 @@ $(function() {
 			_.bindAll(this, 'render');
 
 			console.log(this.collection.last());
+			console.log(this.collection.last().attributes);
 
 			// this.checkBoxes = this.$("input[type=checkbox]").filter(function() { return this.id.match(/ConfigEnabledBooks/); });
 			this.render();
@@ -154,7 +155,7 @@ $(function() {
 		},
 
 		render: function() {
-			_(this.enabled_books).each(function(num, key) {
+			_(this.collection.last().attributes.enabled_books).each(function(num, key) {
 				$('#ConfigEnabledBooks' + num).attr('checked', 'checked');
 			});
 		}
