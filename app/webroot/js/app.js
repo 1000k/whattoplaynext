@@ -4,6 +4,10 @@ App.Model = App.Model || {};
 App.View = App.View || {};
 
 $(function() {
+	Backbone.emulateHTTP = true;
+	
+	App.Configs = {};
+
 	//------------------------
 	// Models
 	//------------------------
@@ -35,6 +39,9 @@ $(function() {
 					return false;
 				} 
 
+				// Maybe by the specification of backbone.localStorage.js,
+				// `response[0]` is given from after second access.
+				// So that unset it manually.
 				if (self.isNew() && response[0]) {
 					console.info('This model does not have id yet, so that set now.');
 					self.set(response[0]);
@@ -42,6 +49,7 @@ $(function() {
 				}
 
 				console.log(self.toJSON());
+				App.Configs = self.attributes;
 			});
 
 			self.fetch();
@@ -55,6 +63,22 @@ $(function() {
 			name: '',
 			Book: [],
 			Sample: []
+		},
+
+		initialize: function() {
+			var self = this;
+
+			// this.listenTo(self, 'all', function(eventName) {
+			// 	console.info('App.Model.Tune "' + eventName + '" fired.');
+			// });
+
+			this.listenTo(self, 'add', function(model, collection, options) {
+				console.info('App.Model.Tune "change" fired.')
+				console.log(model);
+				console.log(collection);
+				console.log(options);
+				self.set('enabled_books', options.enabled_books);
+			});
 		},
 
 		parse: function(response) {
@@ -92,7 +116,8 @@ $(function() {
 		},
 
 		goNext: function() {
-			App.Tunes.create();
+			console.log(App.Configs);
+			App.Tunes.create({}, {enabled_books: App.Configs.enabled_books});
 		},
 
 		render: function() {
@@ -173,12 +198,15 @@ $(function() {
 	new App.View.AppView();
 	new App.View.ConfigView();
 
-
-	// Etc
+	//------------------------
+	// Misc
+	//------------------------
+	// Expand checkbox.
 	$('.checkbox').on('click', function() {
 		var $cb = $('input[type=checkbox]', this);
 		$cb.prop('checked', !$cb.prop('checked'));
 	});
 
+	// Open drawer on window.load(). (Just for development)
 	snapper.open('left');
 });
