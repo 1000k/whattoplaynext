@@ -1,5 +1,7 @@
 // Namespace
-var app = app || {};
+var App = App || {};
+App.Model = App.Model || {};
+App.View = App.View || {};
 
 $(function() {
 	//------------------------
@@ -9,7 +11,7 @@ $(function() {
 	//
 	// To ensure only one Config key exists in local storage,
 	// Use update() not save().
-	app.Config = Backbone.Model.extend({
+	App.Model.Config = Backbone.Model.extend({
 		defaults: {
 			// FIXME This values should be synced with server-side ones.
 			enabled_books: [1, 2, 3],
@@ -21,7 +23,7 @@ $(function() {
 		// If there is no data in LocalStorage, create new data and save immediately.
 		// If there is, extend the id to persist.
 		initialize: function() {
-			console.log('app.Config.initialize()');
+			console.log('App.Model.Config.initialize()');
 			var self = this;
 
 			this.listenTo(self, 'sync', function(model, response, options) {
@@ -47,7 +49,7 @@ $(function() {
 		}
 	});
 
-	app.Tune = Backbone.Model.extend({
+	App.Model.Tune = Backbone.Model.extend({
 		urlRoot: '/next',
 		defaults: {
 			id: '',
@@ -68,34 +70,34 @@ $(function() {
 	// Collections
 	//------------------------
 	// ConfigCollection acts as Singleton to store only one Config model.
-	app.ConfigCollection = Backbone.Collection.extend({
-		model: app.Config,
+	// App.ConfigCollection = Backbone.Collection.extend({
+	// 	model: App.Model.Config,
 
-		initialize: function() {
-			console.log('ConfigCollection.initialize()');
+	// 	initialize: function() {
+	// 		console.log('ConfigCollection.initialize()');
 
-			if (!this.models.length) {
-				console.info('ConfigCollection is empty so added new model.');
-				this.add(new app.Config());
-			} else {
-				console.info('ConfigCollection has models.');
-				// console.log(this.models.length);
-			}
+	// 		if (!this.models.length) {
+	// 			console.info('ConfigCollection is empty so added new model.');
+	// 			this.add(new App.Model.Config());
+	// 		} else {
+	// 			console.info('ConfigCollection has models.');
+	// 			// console.log(this.models.length);
+	// 		}
 
-			// console.log(this.models);
-		}
+	// 		// console.log(this.models);
+	// 	}
 
-	});
+	// });
 
-	app.TuneCollection = Backbone.Collection.extend({
-		model: app.Tune
+	App.TuneCollection = Backbone.Collection.extend({
+		model: App.Model.Tune
 	});
 
 	//------------------------
 	// Views
 	//------------------------
 	// AppView: Top level view
-	app.AppView = Backbone.View.extend({
+	App.View.AppView = Backbone.View.extend({
 		el: $('#content'),
 
 		template: _.template($('#template-tunes').html()),
@@ -107,15 +109,15 @@ $(function() {
 		initialize: function() {
 			this.$tunes = this.$('#tunes');
 
-			this.listenTo(app.Tunes, 'sync', this.render);
+			this.listenTo(App.Tunes, 'sync', this.render);
 		},
 
 		goNext: function() {
-			app.Tunes.create();
+			App.Tunes.create();
 		},
 
 		render: function() {
-			var attrs = app.Tunes.pop().attributes;
+			var attrs = App.Tunes.pop().attributes;
 
 			$('#home').hide();
 			this.$tunes.html(this.template(attrs));
@@ -130,7 +132,7 @@ $(function() {
 	});
 
 	// Config view
-	app.ConfigView = Backbone.View.extend({
+	App.View.ConfigView = Backbone.View.extend({
 		el: $('.drawers'),
 
 		events: {
@@ -138,9 +140,9 @@ $(function() {
 		},
 
 		initialize: function(options) {
-			console.info('app.ConfigView.initialize()');
+			console.info('App.ConfigView.initialize()');
 
-			this.model = new app.Config();
+			this.model = new App.Model.Config();
 
 			this.listenTo(this.model, 'all', this.mojamoja);
 
@@ -163,7 +165,7 @@ $(function() {
 		},
 
 		check: function() {
-			console.log(this.model.attributes);
+			// console.log(this.model.attributes);
 
 			this.model.save({
 				enabled_books: this._getCheckedBoxes(),
@@ -173,10 +175,6 @@ $(function() {
 		},
 
 		render: function() {
-			// console.log(this.model);
-			// console.log(this.model.get('enabled_books'));
-			// console.log(this.model.localStorage.findAll());
-			// console.log(this.model.localStorage.find('enabled_books'));
 			_(this.model.get('enabled_books')).each(function(num, key) {
 				$('#ConfigEnabledBooks' + num).attr('checked', 'checked');
 			});
@@ -197,13 +195,13 @@ $(function() {
 	});
 
 	// Start
-	app.Router = new Workspace();
+	App.Router = new Workspace();
 	Backbone.history.start();
 
-	app.Tunes = new app.TuneCollection();
+	App.Tunes = new App.TuneCollection();
 
-	new app.AppView();
-	new app.ConfigView();
+	new App.View.AppView();
+	new App.View.ConfigView();
 
 
 	// Etc
