@@ -1,12 +1,32 @@
+// Namespace
 var app = app || {};
 
 $(function() {
 	//------------------------
 	// Models
 	//------------------------
+	// Config model
+	//
+	// To ensure only one Config key exists in local storage,
+	// Use update() not save().
 	app.Config = Backbone.Model.extend({
 		defaults: {
-			checked: false
+			// FIXME This values should be synced with server-side ones.
+			enabled_books: [1, 2, 3],
+			modified: new Date().getTime()
+		},
+
+		localStorage: new Backbone.LocalStorage('Config'),
+
+		initialize: function() {
+			console.log('app.Config.initialize()');
+			// console.log(this.localStorage.findAll(this));
+
+			if (this.localStorage.length < 1) {
+				console.info('There is no Config in local storage so added new one.');
+				this.save(this.defaults);
+				console.log(this.localStorage.findAll(this));
+			}
 		}
 	});
 
@@ -19,13 +39,6 @@ $(function() {
 			Sample: []
 		},
 
-		// initialize: function() {
-		// 	this.on('sync', function(model) {
-		// 		console.info('Synced.');
-		// 		console.log(model.get('name'));
-		// 	});
-		// },
-
 		parse: function(response) {
 			this.set('id', response.Tune.id);
 			this.set('name', response.Tune.name);
@@ -37,18 +50,24 @@ $(function() {
 	//------------------------
 	// Collections
 	//------------------------
-	var ConfigCollection = Backbone.Collection.extend({
-		model: app.Config,
+	// ConfigCollection acts as Singleton to store only one Config model.
+	// app.ConfigCollection = Backbone.Collection.extend({
+	// 	model: app.Config,
 
-		localStorage: new Backbone.LocalStorage("ConfigCollection"),
+	// 	initialize: function() {
+	// 		console.log('ConfigCollection.initialize()');
 
-		initialize: function() {
-			
-		}
+	// 		if (!this.models.length) {
+	// 			console.info('ConfigCollection is empty so added new model.');
+	// 			this.add(new app.Config());
+	// 		}
 
-	});
+	// 		console.log(this.models);
+	// 	}
 
-	var TuneCollection = Backbone.Collection.extend({
+	// });
+
+	app.TuneCollection = Backbone.Collection.extend({
 		model: app.Tune
 	});
 
@@ -96,22 +115,35 @@ $(function() {
 		el: $('.drawers'),
 
 		events: {
-			'click .checkbox': 'uhouho'
+			'click .checkbox': 'check'
 		},
 
-		uhouho: function() {
-			console.log('uhouho');
-		},
+		initialize: function(options) {
+			console.info('app.ConfigView.initialize()');
 
-		initialize: function() {
+			this.model = new app.Config();
+
 			_.bindAll(this, 'render');
 
-			this.checkBoxes = this.$("input[type=checkbox]").filter(function() { return this.id.match(/ConfigEnabledBooks/); });
-
-			this.enabled_books = [1, 2, 3];
-			this.collection = new ConfigCollection();
-
+			// this.checkBoxes = this.$("input[type=checkbox]").filter(function() { return this.id.match(/ConfigEnabledBooks/); });
 			this.render();
+		},
+
+		check: function() {
+			console.log('uhouho');
+
+			var books = _.toArray(
+				$('input[name="data[Config][enabled_books][]"]:checked')
+				.map(function() { return parseInt(this.value); })
+			);
+
+			this.model.save({
+				enabled_books: books,
+				modified: new Date().getTime()
+
+			});
+			// this.model.save();
+			console.log(this.model);
 		},
 
 		render: function() {
@@ -138,8 +170,8 @@ $(function() {
 	app.Router = new Workspace();
 	Backbone.history.start();
 
-	app.Configs = new ConfigCollection();
-	app.Tunes = new TuneCollection();
+	// app.Configs = new app.ConfigCollection();
+	app.Tunes = new app.TuneCollection();
 
 	new app.AppView();
 	new app.ConfigView();
