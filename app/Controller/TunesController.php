@@ -7,15 +7,6 @@ App::uses('AppController', 'Controller');
  */
 class TunesController extends AppController {
 	public $components = ['RequestHandler'];
-/**
- * index method
- *
- * @return void
- */
-	// public function index() {
-	// 	$this->Tune->recursive = 0;
-	// 	$this->set('tunes', $this->paginate());
-	// }
 
 /**
  * view method
@@ -31,12 +22,17 @@ class TunesController extends AppController {
 		$options = [
 			'conditions' => ['Tune.' . $this->Tune->primaryKey => $id]
 		];
+
 		$tune = $this->Tune->find('first', $options);
-		$this->set([
+		$books = $this->Tune->Book->find('list');
+
+		$result = [
 			'tune' => $tune,
-			'books' => $this->Tune->Book->find('list'),
+			'books' => $books,
 			'title_for_layout' => $tune['Tune']['name']
-		]);
+		];
+		$this->set('result', $result);
+		$this->set('_serialize', 'result');
 	}
 
 	public function next() {

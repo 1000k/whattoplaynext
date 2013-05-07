@@ -26,15 +26,10 @@ $(function() {
 		// If there is no data in LocalStorage, create new data and save immediately.
 		// If there is, extend the id to persist.
 		initialize: function() {
-			console.log('App.Model.Config.initialize()');
 			var self = this;
 
 			this.listenTo(self, 'sync', function(model, response, options) {
-				console.info('ConfigModel synced!');
-				console.log('self.isNew(): ' + self.isNew());
-
 				if (response.length < 1) {
-					console.info('There is no Config in local storage. Now save defaults.');
 					self.save(self.defaults);
 					return false;
 				} 
@@ -43,12 +38,10 @@ $(function() {
 				// `response[0]` is given from after second access.
 				// So that unset it manually.
 				if (self.isNew() && response[0]) {
-					console.info('This model does not have id yet, so that set now.');
 					self.set(response[0]);
 					self.unset('0');
 				}
 
-				console.log(self.toJSON());
 				App.Configs = self.attributes;
 			});
 
@@ -68,15 +61,7 @@ $(function() {
 		initialize: function() {
 			var self = this;
 
-			// this.listenTo(self, 'all', function(eventName) {
-			// 	console.info('App.Model.Tune "' + eventName + '" fired.');
-			// });
-
 			this.listenTo(self, 'add', function(model, collection, options) {
-				console.info('App.Model.Tune "change" fired.')
-				console.log(model);
-				console.log(collection);
-				console.log(options);
 				self.set('enabled_books', options.enabled_books);
 			});
 		},
@@ -120,7 +105,6 @@ $(function() {
 			$('#tunes').hide();
 			$('.spinner').show();
 
-			console.log(App.Configs);
 			App.Tunes.create({}, {enabled_books: App.Configs.enabled_books});
 		},
 
@@ -128,6 +112,7 @@ $(function() {
 			var attrs = App.Tunes.pop().attributes;
 
 			this.$tunes.html(this.template(attrs));
+
 			$('#tunes').show();
 			$('#tunes').scrollTop(0);
 			$('.spinner').hide();
@@ -149,8 +134,6 @@ $(function() {
 		},
 
 		initialize: function(options) {
-			console.info('App.ConfigView.initialize()');
-
 			this.model = new App.Model.Config();
 
 			_.bindAll(this, 'render');
@@ -168,7 +151,6 @@ $(function() {
 		},
 
 		check: function() {
-			// console.log(this.model.attributes);
 			this.model.save({
 				enabled_books: this._getCheckedBoxes()
 			});
@@ -186,12 +168,13 @@ $(function() {
 	//------------------------
 	var Workspace = Backbone.Router.extend({
 		routes: {
-			'next': 'next'		// #next
+			'tunes/view/:id': 'tunes_view'		// #tunes/view/800
 		},
 
-		next: function() {
-			console.log('next route');
+		tunes_view: function(id) {
+			console.log('tunes/view/' + id);
 		}
+
 	});
 
 	// Start
