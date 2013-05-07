@@ -18,10 +18,19 @@
 //
 // see: https://gist.github.com/greypants/3185028
 // ======================================================================
+@mixin animation($params) {
+	-webkit-animation: $params;
+	-moz-animation: $params;
+	-ms-animation: $params;
+	-o-animation: $params;
+	animation: $params;
+}
+
 @mixin animation-name($name) {
 	-webkit-animation-name: $name;
 	-moz-animation-name: $name;
 	-ms-animation-name: $name;
+	-o-animation-name: $name;
 	animation-name: $name;
 }
 
@@ -29,6 +38,7 @@
 	-webkit-animation-duration: $name;
 	-moz-animation-duration: $name;
 	-ms-animation-duration: $name;
+	-o-animation-duration: $name;
 	animation-duration: $name;
 }
 
@@ -36,6 +46,7 @@
 	-webkit-animation-timing-function: $name;
 	-moz-animation-timing-function: $name;
 	-ms-animation-timing-function: $name;
+	-o-animation-timing-function: $name;
 	animation-timing-function: $name;
 }
 
@@ -43,6 +54,7 @@
 	-webkit-animation-iteration-count: $name;
 	-moz-animation-iteration-count: $name;
 	-ms-animation-iteration-count: $name;
+	-o-animation-iteration-count: $name;
 	animation-iteration-count: $name;
 }
 
@@ -50,6 +62,7 @@
 	-webkit-animation-direction: $name;
 	-moz-animation-direction: $name;
 	-ms-animation-direction: $name;
+	-o-animation-direction: $name;
 	animation-direction: $name;
 }
 
@@ -57,6 +70,7 @@
 	-webkit-animation-delay: $name;
 	-moz-animation-delay: $name;
 	-ms-animation-delay: $name;
+	-o-animation-delay: $name;
 	animation-delay: $name;
 }
  
@@ -64,6 +78,7 @@
 	-webkit-animation-play-state: $name;
 	-moz-animation-play-state: $name;
 	-ms-animation-play-state: $name;
+	-o-animation-play-state: $name;
 	animation-play-state: $name;
 }
  
@@ -71,6 +86,7 @@
 	-webkit-animation-fill-mode: $name;
 	-moz-animation-fill-mode: $name;
 	-ms-animation-fill-mode: $name;
+	-o-animation-fill-mode: $name;
 	animation-fill-mode: $name;
 }
 
@@ -78,5 +94,6 @@
 	@-webkit-keyframes $name { @content; }
 	@-moz-keyframes $name { @content; }
 	@-ms-keyframes $name { @content; }
+	@-o-keyframes $name { @content; }
 	@keyframes $name { @content; }
 }

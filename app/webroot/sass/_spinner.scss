@@ -1,0 +1,17 @@
+$spinner-width: 32px;
+$spinner-height: $spinner-width;
+
+.spinner {
+  display: none;
+  height: $spinner-height;
+  width: $spinner-width;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -($spinner-height/2);
+  margin-left: -($spinner-width/2);
+
+  background: url(../img/loading_32x32.gif) #000 no-repeat;
+  z-index: 100;
+}

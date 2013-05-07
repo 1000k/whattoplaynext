@@ -36,6 +36,7 @@
 		<?= $this->element('btn-drawer-trigger') ?>
 
 		<div id="home">
+			<span class="spinner"></span>
 			<div class="home-wrapper">
 				<div class="home-wrapper-inner">
 					<?= $this->element('btn-wpn') ?>

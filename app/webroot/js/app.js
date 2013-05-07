@@ -116,6 +116,10 @@ $(function() {
 		},
 
 		goNext: function() {
+			$('#home').hide();
+			$('#tunes').hide();
+			$('.spinner').show();
+
 			console.log(App.Configs);
 			App.Tunes.create({}, {enabled_books: App.Configs.enabled_books});
 		},
@@ -123,9 +127,10 @@ $(function() {
 		render: function() {
 			var attrs = App.Tunes.pop().attributes;
 
-			$('#home').hide();
 			this.$tunes.html(this.template(attrs));
 			$('#tunes').show();
+			$('#tunes').scrollTop(0);
+			$('.spinner').hide();
 
 			// Attach triggers on elements.
 			$(".m-carousel").carousel();
@@ -207,6 +212,6 @@ $(function() {
 		$cb.prop('checked', !$cb.prop('checked'));
 	});
 
-	// Open drawer on window.load(). (Just for development)
-	snapper.open('left');
+	// Open drawer on window.load(). (Just for development purpose)
+	// snapper.open('left');
 });
