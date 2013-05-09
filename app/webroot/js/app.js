@@ -1,7 +1,8 @@
 // Namespace
 var App = App || {};
-App.Model = App.Model || {};
-App.View = App.View || {};
+App.Models = App.Models || {};
+App.Collections = App.Collections || {};
+App.Views = App.Views || {};
 
 $(function() {
 	Backbone.emulateHTTP = true;
@@ -15,7 +16,7 @@ $(function() {
 	//
 	// To ensure only one Config key exists in local storage,
 	// Use update() not save().
-	App.Model.Config = Backbone.Model.extend({
+	App.Models.Config = Backbone.Model.extend({
 		defaults: {
 			// FIXME This values should be synced with server-side ones.
 			enabled_books: [1, 2, 3]
@@ -49,7 +50,7 @@ $(function() {
 		}
 	});
 
-	App.Model.Tune = Backbone.Model.extend({
+	App.Models.Tune = Backbone.Model.extend({
 		urlRoot: '/next',
 		defaults: {
 			id: '',
@@ -77,15 +78,15 @@ $(function() {
 	//------------------------
 	// Collections
 	//------------------------
-	App.TuneCollection = Backbone.Collection.extend({
-		model: App.Model.Tune
+	App.Collections.Tunes = Backbone.Collection.extend({
+		model: App.Models.Tune
 	});
 
 	//------------------------
 	// Views
 	//------------------------
 	// AppView: Top level view
-	App.View.AppView = Backbone.View.extend({
+	App.Views.AppView = Backbone.View.extend({
 		el: $('#content'),
 
 		template: _.template($('#template-tunes').html()),
@@ -126,7 +127,7 @@ $(function() {
 	});
 
 	// Config view
-	App.View.ConfigView = Backbone.View.extend({
+	App.Views.ConfigView = Backbone.View.extend({
 		el: $('.drawers'),
 
 		events: {
@@ -134,7 +135,7 @@ $(function() {
 		},
 
 		initialize: function(options) {
-			this.model = new App.Model.Config();
+			this.model = new App.Models.Config();
 
 			_.bindAll(this, 'render');
 
@@ -181,10 +182,10 @@ $(function() {
 	App.Router = new Workspace();
 	Backbone.history.start();
 
-	App.Tunes = new App.TuneCollection();
+	App.Tunes = new App.Collections.Tunes();
 
-	new App.View.AppView();
-	new App.View.ConfigView();
+	new App.Views.AppView();
+	new App.Views.ConfigView();
 
 	//------------------------
 	// Misc
