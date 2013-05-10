@@ -19,17 +19,12 @@ class TunesController extends AppController {
 		if (!$this->Tune->exists($id)) {
 			throw new NotFoundException(__('Invalid tune'));
 		}
-		$options = [
-			'conditions' => ['Tune.' . $this->Tune->primaryKey => $id]
-		];
+		$tune = $this->Tune->findById($id);
 
-		$tune = $this->Tune->find('first', $options);
-
-		$result = [
+		$this->set('result', [
 			'tune' => $tune,
 			'title_for_layout' => $tune['Tune']['name']
-		];
-		$this->set('result', $result);
+		]);
 		$this->set('_serialize', 'result');
 	}
 
