@@ -24,11 +24,9 @@ class TunesController extends AppController {
 		];
 
 		$tune = $this->Tune->find('first', $options);
-		$books = $this->Tune->Book->find('list');
 
 		$result = [
 			'tune' => $tune,
-			'books' => $books,
 			'title_for_layout' => $tune['Tune']['name']
 		];
 		$this->set('result', $result);
