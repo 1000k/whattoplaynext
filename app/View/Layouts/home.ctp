@@ -49,7 +49,7 @@
 		<div id="tunes" class="scrollable drawer-swipable">
 		<script type="text/template" id="template-tunes">
 			<section class="title">
-				<%- name %>
+				<%- Tune.name %>
 			</section>
 
 			<section class="published">

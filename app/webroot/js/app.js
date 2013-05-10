@@ -7,12 +7,18 @@ var App = {
 	run: function() {
 		Backbone.emulateHTTP = true;
 
-		this.router = new App.Router();
-		Backbone.history.start();
-
 		this.tunes = new App.Collections.Tunes();
 		this.appView = new App.Views.AppView({collection: this.tunes});
 		this.configView = new App.Views.ConfigView();
+
+		this.router = new App.Router();
+		Backbone.history.start();
+
+		this.router.route('/tunes/view/:id', 'tunesView', function(id) {
+			console.info('tunesView');
+			console.log('/tunes/view/' + id);
+			this.appView.render(id);
+		});
 
 		// Expand checkbox.
 		$('.checkbox').on('click', function() {
@@ -68,12 +74,11 @@ App.Models.Config = Backbone.Model.extend({
 
 App.Models.Tune = Backbone.Model.extend({
 	urlRoot: '/next',
-	defaults: {
-		id: '',
-		name: '',
-		Book: [],
-		Sample: []
-	},
+	// defaults: {
+	// 	Tune: { id: '', name: '' },
+	// 	Book: {},
+	// 	Sample: {}
+	// },
 
 	initialize: function() {
 		var self = this;
@@ -83,12 +88,12 @@ App.Models.Tune = Backbone.Model.extend({
 		});
 	},
 
-	parse: function(response) {
-		this.set('id', response.Tune.id);
-		this.set('name', response.Tune.name);
-		this.set('Book', response.Book);
-		this.set('Sample', response.Sample);
-	}
+	// parse: function(response) {
+	// 	this.set('Tune.id', response.Tune.id);
+	// 	this.set('Tune.name', response.Tune.name);
+	// 	this.set('Book', response.Book);
+	// 	this.set('Sample', response.Sample);
+	// }
 });
 
 //------------------------
@@ -118,7 +123,7 @@ App.Views.AppView = Backbone.View.extend({
 		this.template = _.template($('#template-tunes').html());
 		this.collection = options.collection;
 
-		this.listenTo(this.collection, 'sync', this.render);
+		// this.listenTo(this.collection, 'sync', this.render);
 	},
 
 	goNext: function() {
@@ -126,13 +131,29 @@ App.Views.AppView = Backbone.View.extend({
 		$('#tunes').hide();
 		$('.spinner').show();
 
+		var self = this;
+
+		this.collection.once('sync', function(model, response) {
+			console.log(model.toJSON());
+			self.render(response.Tune.id, model);
+		});
+		// this.render(id);
 		this.collection.create({}, {enabled_books: App.Configs.enabled_books});
 	},
 
-	render: function() {
-		var attrs = this.collection.last().attributes;
+	render: function(id, model) {
+		console.info('render');
+		console.log(id, model);
+
+		if (model) {
+			var attrs = model.toJSON();
+		} else {
+			console.info('model is not set');
+		}
 
 		this.$tunes.html(this.template(attrs));
+		App.router.navigate('/tunes/view/' + id, {trigger: true});
+		document.title = model.get('name') + ' | What to Play Next?';
 
 		$('#tunes').show();
 		$('#tunes').scrollTop(0);
@@ -188,13 +209,14 @@ App.Views.ConfigView = Backbone.View.extend({
 // Router
 //------------------------
 App.Router = Backbone.Router.extend({
-	routes: {
-		'tunes/view/:id': 'tunesView'		// #tunes/view/800
-	},
+	// routes: {
+	// 	'tunes/view/:id': 'tunesView'		// #tunes/view/800
+	// },
 
-	tunesView: function(id) {
-		console.log('tunes/view/' + id);
-	}
+	// tunesView: function(id) {
+	// 	console.info('tunesView');
+	// 	console.log('tunes/view/' + id);
+	// }
 
 });
 

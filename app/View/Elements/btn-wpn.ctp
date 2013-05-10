@@ -1,1 +1,1 @@
-<?= $this->Html->link('次なにやる？', '#next', ['class' => 'btn btn-wpn']) ?>
+<?= $this->Html->link('次なにやる？', '#/next', ['class' => 'btn btn-wpn']) ?>
