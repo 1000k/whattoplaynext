@@ -21,11 +21,15 @@ class TunesController extends AppController {
 		}
 		$tune = $this->Tune->findById($id);
 
-		$this->set('result', [
+		$this->set([
 			'tune' => $tune,
-			'title_for_layout' => $tune['Tune']['name']
+			'title_for_layout' => $tune['Tune']['name'] . ' | What to Play Next?'
 		]);
-		$this->set('_serialize', 'result');
+
+		if ($this->RequestHandler->isAjax()) {
+			$this->set('_serialize', 'tune');
+			return true;
+		}
 	}
 
 	public function next() {
