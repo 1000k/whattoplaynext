@@ -120,7 +120,7 @@ App.Views.AppView = Backbone.View.extend({
 	},
 
 	render: function() {
-		console.info('App.Views.AppView.render');
+		// console.info('App.Views.AppView.render');
 		$('#tunes').show();
 		$('#tunes').scrollTop(0);
 		$('.spinner').hide();
@@ -198,13 +198,13 @@ App.Router = Backbone.Router.extend({
 	},
 
 	next: function() {
-		console.info('App.router.next');
+		// console.info('App.router.next');
 		App.appView.goNext();
 	},
 
 	tunesView: function(id) {
-		console.info('App.router.tunesView');
-		console.log('tunes/view/' + id);
+		// console.info('App.router.tunesView');
+		// console.log('tunes/view/' + id);
 		App.appView.render();
 	}
 

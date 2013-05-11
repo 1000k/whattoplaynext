@@ -10,6 +10,7 @@
 /plugins
 /tags
 /vendors
+/node_modules
 
 # OS generated files #
 ######################
