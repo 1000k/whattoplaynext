@@ -127,7 +127,9 @@ App.Views.AppView = Backbone.View.extend({
 
 		// Attach triggers on elements.
 		$(".m-carousel").carousel();
-		$(".html5lightbox").html5lightbox();
+		$(".html5lightbox").html5lightbox({
+			overlayopacity: 0.8
+		});
 
 		return this;
 	}

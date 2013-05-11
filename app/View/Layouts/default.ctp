@@ -12,16 +12,17 @@
 			'carousel-style.min'
 		]);
 		echo $this->Html->script([
-			'vendor/jquery/jquery',
-			'vendor/jquery-mousewheel/jquery.mousewheel',
-			'vendor/underscore/underscore',
-			'vendor/backbone/backbone',
-			'vendor/backbone.localStorage/backbone.localStorage',
-			'vendor/hook/hook.min',
-			'vendor/mobify-modules/carousel/src/carousel',
+			// 'vendor/jquery/jquery',
+			// 'vendor/jquery-mousewheel/jquery.mousewheel',
+			// 'vendor/underscore/underscore',
+			// 'vendor/backbone/backbone',
+			// 'vendor/backbone.localStorage/backbone.localStorage',
+			// 'vendor/hook/hook',
+			// 'vendor/mobify-modules/carousel/src/carousel',
+			// 'vendor/snap/snap',
+			// 'app'
+			'wpn.min',
 			'vendor/html5lightbox',
-			'vendor/snap/snap.min',
-			'app'
 		]);
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
