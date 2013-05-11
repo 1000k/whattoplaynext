@@ -12,25 +12,6 @@ var App = {
 		this.configView = new App.Views.ConfigView();
 
 		this.router = new App.Router();
-		// Backbone.history.start({pushState: true});
-
-		// // Prevent default behavior on all internal links
-		// // and give IE fallback.
-		// $(document).on('click', 'a[href^="/"', function(e) {
-		// 	var href = $(e.currentTarget).attr('href');
-
-		// 	// (?) chain 'or's for other black list routes.
-		// 	var passThrough = href.indexOf('sign_out') >= 0;
-
-		// 	// Allow shift+click for new tabs, etc.
-		// 	if (!passThrough && !event.altKey && !event.ctrlKey && !event.metaKey) {
-		// 		event.preventDefault();
-		// 	}
-
-		// 	// Remove leading slashes and hash bangs (backward compatibility)
-		// 	var url = href/replace(/^\//, '').replace('\#\!/', '');
-		// 	App.router.navigate(url, {trigger: true});
-		// });
 
 		// Expand checkbox.
 		$('.checkbox').on('click', function() {
@@ -150,7 +131,7 @@ App.Views.AppView = Backbone.View.extend({
 
 		this.$tunes.html(this.template(attrs));
 		App.router.navigate('/tunes/view/' + id, {trigger: true});
-		document.title = model.get('name') + ' | What to Play Next?';
+		document.title = model.attributes.Tune.name + ' | What to Play Next?';
 
 		$('#tunes').show();
 		$('#tunes').scrollTop(0);
