@@ -3,10 +3,7 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<?= $this->Html->charset(); ?>
-	<title>
-		What To Play Next?
-		<?= $title_for_layout ? ": {$title_for_layout}" : ''; ?>
-	</title>
+	<title><?= $title_for_layout ?></title>
 	<?php
 		echo $this->Html->meta('icon');
 		echo $this->Html->css([
@@ -24,32 +21,30 @@
 			'vendor/mobify-modules/carousel/src/carousel',
 			'vendor/html5lightbox',
 			'vendor/snap/snap.min',
-			'wpn'
+			'app'
 		]);
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
-	<?= $this->element('ga') ?>
+	<?= $this->element('ga'); ?>
 </head>
 <body data-snap-ignore="true">
-	<div class="hook" id="hook"></div>
-	
 	<?= $this->element('drawer') ?>
 
 	<div id="content" class="scrollable drawer-swipable">
 		<?= $this->element('btn-drawer-trigger') ?>
+		<span class="spinner"></span>
 
-		<?= $this->Session->flash(); ?>
-		<?= $this->fetch('content'); ?>
+		<?= $this->fetch('content') ?>
 	</div>
 
 	<script>
-$(document).ready(function(){
-	<?= $this->element('init-script-drawer-trigger') ?>
-	<?= $this->element('init-script-carousel') ?>
-	<?= $this->element('init-script-wpn') ?>
-});
+	<?= $this->element('script-drawer-trigger') ?>
+	
+	$(document).ready(function(){
+		<?= $this->element('init-script-carousel') ?>
+	});
 	</script>
 </body>
 </html>

@@ -33,4 +33,12 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 	public $components = ['DebugKit.Toolbar'];
+	public $uses = ['Book'];
+
+	protected function _setBooks() {
+		$this->set([
+			'books' => $this->Book->find('list'),
+		]);
+	}
+
 }

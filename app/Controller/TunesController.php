@@ -8,6 +8,11 @@ App::uses('AppController', 'Controller');
 class TunesController extends AppController {
 	public $components = ['RequestHandler'];
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->_setBooks();
+	}
+
 /**
  * view method
  *

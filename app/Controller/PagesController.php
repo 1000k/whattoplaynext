@@ -38,7 +38,10 @@ class PagesController extends AppController {
  */
 	public $name = 'Pages';
 
-	public $uses = ['Book'];
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->_setBooks();
+	}
 
 /**
  * Displays a view
@@ -69,8 +72,7 @@ class PagesController extends AppController {
 	}
 
 	public function index() {
-		$this->set('books', $this->Book->find('list'));
-		$this->layout = 'home';
+		$this->set('title_for_layout', 'What to Play Next?');
 		$this->render('home');
 	}
 }
