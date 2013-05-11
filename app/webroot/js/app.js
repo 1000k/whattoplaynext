@@ -113,25 +113,20 @@ App.Views.AppView = Backbone.View.extend({
 		var self = this;
 
 		this.collection.once('sync', function(model, response) {
-			self.render(response.Tune.id, model);
+			self.render();
+
+			var tune = model.attributes.Tune;
+
+			self.$tunes.html(self.template(model.toJSON()));
+			App.router.navigate('/tunes/view/' + tune.id, {trigger: true});
+			document.title = tune.name + ' | What to Play Next?';
 		});
 
 		this.collection.create({}, {enabled_books: App.Configs.enabled_books});
 	},
 
-	render: function(id, model) {
+	render: function() {
 		console.info('render');
-		console.log(id, model);
-
-		if (model) {
-			var attrs = model.toJSON();
-		} else {
-			console.info('model is not set');
-		}
-
-		this.$tunes.html(this.template(attrs));
-		App.router.navigate('/tunes/view/' + id, {trigger: true});
-		document.title = model.attributes.Tune.name + ' | What to Play Next?';
 
 		$('#tunes').show();
 		$('#tunes').scrollTop(0);
@@ -221,7 +216,7 @@ App.Router = Backbone.Router.extend({
 	tunesView: function(id) {
 		console.info('tunesView');
 		console.log('tunes/view/' + id);
-		// App.appView.render(id);
+		App.appView.render();
 	}
 
 });
