@@ -20,7 +20,7 @@ var App = {
 		});
 
 		// Open drawer on window.load(). (Just for development purpose)
-		snapper.open('left');
+		// snapper.open('left');
 	}
 };
 
@@ -91,9 +91,9 @@ App.Collections.Tunes = Backbone.Collection.extend({
 App.Views.AppView = Backbone.View.extend({
 	el: '#content',
 
-	events: {
-		'click .btn-wpn': 'goNext'
-	},
+	// events: {
+	// 	'click .btn-wpn': 'goNext'
+	// },
 
 	initialize: function(options) {
 		_.bindAll(this, 'goNext', 'render');
@@ -101,8 +101,6 @@ App.Views.AppView = Backbone.View.extend({
 		this.$tunes = this.$('#tunes');
 		this.template = _.template($('#template-tunes').html());
 		this.collection = options.collection;
-
-		// this.listenTo(this.collection, 'sync', this.render);
 	},
 
 	goNext: function() {
@@ -118,7 +116,7 @@ App.Views.AppView = Backbone.View.extend({
 			var tune = model.attributes.Tune;
 
 			self.$tunes.html(self.template(model.toJSON()));
-			App.router.navigate('/tunes/view/' + tune.id, {trigger: true});
+			App.router.navigate('/tunes/view/' + tune.id, {replace: true});
 			document.title = tune.name + ' | What to Play Next?';
 		});
 
@@ -188,29 +186,24 @@ App.Router = Backbone.Router.extend({
 	},
 
 	initialize: function() {
-		Backbone.history.start({pushState: true});
+		var isPushStateEnabled = !!(window.history && window.history.pushState);
+		Backbone.history.start({pushState: isPushStateEnabled});
 
-		// Prevent default behavior on all internal links
-		// and give IE fallback.
-		$(document).on('click', 'a[href^="/"]', function(e) {
-			var href = $(e.currentTarget).attr('href');
-
-			// (?) chain 'or's for other black list routes.
-			var passThrough = href.indexOf('sign_out') >= 0;
-
-			// Allow shift+click for new tabs, etc.
-			if (!passThrough && !event.altKey && !event.ctrlKey && !event.metaKey) {
-				event.preventDefault();
-			}
-
-			// Remove leading slashes and hash bangs (backward compatibility)
-			var url = href.replace(/^\//, '').replace('\#\!/', '');
-			App.router.navigate(url, {trigger: true});
-		});
+		if (isPushStateEnabled) {
+			$(document).on('click', 'a:not([data-bypass])', function (e) {
+				var href = $(this).attr('href');
+				var protocol = this.protocol + '//';
+				if (href.slice(protocol.length) !== protocol) {
+					e.preventDefault();
+					App.router.navigate(href, true);
+				}
+			});
+		}
 	},
 
 	next: function() {
 		console.info('next');
+		App.appView.goNext();
 	},
 
 	tunesView: function(id) {

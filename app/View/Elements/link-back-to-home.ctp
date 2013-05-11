@@ -1,0 +1,1 @@
+<p><small>&copy; <?= $this->Html->link('What To Play Next?', '/', ['data-bypass' => 'true']) ?></small></p>
