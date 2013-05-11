@@ -38,6 +38,7 @@ class TunesController extends AppController {
 	}
 
 	public function next() {
+		CakeLog::debug(IMAGES_URL);
 		$enabled_books = isset($this->request->data['enabled_books']) ? $this->request->data['enabled_books'] : null;
 
 		if ($this->RequestHandler->isAjax()) {

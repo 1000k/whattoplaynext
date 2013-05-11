@@ -10,7 +10,7 @@
 		<?php foreach($tune['Book'] as $book): ?>
 			<li class="thumbnail">
 				<a href="<?= $book['url_amazon'] ?>" target="_blank">
-					<?= $this->Html->image("books/{$book['image_path']}", ['alt' => $book['name']]) ?>
+					<img src="<?= FULL_BASE_URL . '/' . IMAGES_URL . 'books/' . $book['image_path'] ?>" alt="$book['name']">
 					<p><?= $book['name'] ?><img src="<?= $book['url_amazon_conversion_image'] ?>" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;"></p>
 				</a>
 			</li>
@@ -27,7 +27,7 @@
 				<div class="m-carousel-inner">
 				<?php foreach ($tune['Sample'] as $key => $sample): ?>
 					<div class="m-item">
-						<?= $this->Html->image("samples/{$sample['thumbnail']}", ['alt' => $sample['title'], 'style' => 'width:100%']); ?>
+						<img src="<%= FULL_BASE_URL . '/' . IMAGES_URL . 'samples/' . $sample['thumbnail']} %>" alt="<%= $sample['title'] %>" style="width:100%">
 						<a href="http://www.youtube.com/embed/<?= $sample['url'] ?>" title="<?= $sample['title'] ?>" class="html5lightbox">
 							<?= $this->Html->para("m-caption", $sample['title']) ?>
 						</a>

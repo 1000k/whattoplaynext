@@ -105,12 +105,12 @@ App.Views.AppView = Backbone.View.extend({
 
 	goNext: function() {
 		$('#home').hide();
-		$('#tunes').hide();
+		$('#tunes').hide().children().remove();
 		$('.spinner').show();
 
 		var self = this;
 
-		this.collection.once('sync', function(model, response) {
+		this.collection.on('sync', function(model, response) {
 			self.render();
 
 			var tune = model.attributes.Tune;
@@ -124,8 +124,7 @@ App.Views.AppView = Backbone.View.extend({
 	},
 
 	render: function() {
-		console.info('render');
-
+		console.info('App.Views.AppView.render');
 		$('#tunes').show();
 		$('#tunes').scrollTop(0);
 		$('.spinner').hide();
@@ -186,11 +185,13 @@ App.Router = Backbone.Router.extend({
 	},
 
 	initialize: function() {
+		var bypasses = '.btn-wpn';
+		console.log($(bypasses));
 		var isPushStateEnabled = !!(window.history && window.history.pushState);
 		Backbone.history.start({pushState: isPushStateEnabled});
 
 		if (isPushStateEnabled) {
-			$(document).on('click', 'a:not([data-bypass])', function (e) {
+			$(document).on('click', bypasses, function (e) {
 				var href = $(this).attr('href');
 				var protocol = this.protocol + '//';
 				if (href.slice(protocol.length) !== protocol) {
@@ -202,12 +203,12 @@ App.Router = Backbone.Router.extend({
 	},
 
 	next: function() {
-		console.info('next');
+		console.info('App.router.next');
 		App.appView.goNext();
 	},
 
 	tunesView: function(id) {
-		console.info('tunesView');
+		console.info('App.router.tunesView');
 		console.log('tunes/view/' + id);
 		App.appView.render();
 	}
