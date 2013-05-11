@@ -52,6 +52,6 @@
 	<footer class="footer">
 		<?= $this->element('link-back-to-home') ?>
 	</footer>
-
-	<?= $this->element('templates/tunes') ?>
 </div>
+<?= $this->element('templates/tunes') ?>
+

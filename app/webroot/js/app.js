@@ -91,10 +91,6 @@ App.Collections.Tunes = Backbone.Collection.extend({
 App.Views.AppView = Backbone.View.extend({
 	el: '#content',
 
-	// events: {
-	// 	'click .btn-wpn': 'goNext'
-	// },
-
 	initialize: function(options) {
 		_.bindAll(this, 'goNext', 'render');
 
@@ -105,19 +101,19 @@ App.Views.AppView = Backbone.View.extend({
 
 	goNext: function() {
 		$('#home').hide();
-		$('#tunes').hide().children().remove();
+		$('#tunes').hide().html('');
 		$('.spinner').show();
 
 		var self = this;
 
 		this.collection.on('sync', function(model, response) {
-			self.render();
-
 			var tune = model.attributes.Tune;
 
 			self.$tunes.html(self.template(model.toJSON()));
 			App.router.navigate('/tunes/view/' + tune.id, {replace: true});
 			document.title = tune.name + ' | What to Play Next?';
+
+			self.render();
 		});
 
 		this.collection.create({}, {enabled_books: App.Configs.enabled_books});
@@ -185,13 +181,12 @@ App.Router = Backbone.Router.extend({
 	},
 
 	initialize: function() {
-		var bypasses = '.btn-wpn';
-		console.log($(bypasses));
+		var preventDefaultElems = '.btn-wpn';
 		var isPushStateEnabled = !!(window.history && window.history.pushState);
 		Backbone.history.start({pushState: isPushStateEnabled});
 
 		if (isPushStateEnabled) {
-			$(document).on('click', bypasses, function (e) {
+			$(document).on('click', preventDefaultElems, function (e) {
 				var href = $(this).attr('href');
 				var protocol = this.protocol + '//';
 				if (href.slice(protocol.length) !== protocol) {
