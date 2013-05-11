@@ -12,13 +12,25 @@ var App = {
 		this.configView = new App.Views.ConfigView();
 
 		this.router = new App.Router();
-		Backbone.history.start();
+		// Backbone.history.start({pushState: true});
 
-		this.router.route('/tunes/view/:id', 'tunesView', function(id) {
-			console.info('tunesView');
-			console.log('/tunes/view/' + id);
-			this.appView.render(id);
-		});
+		// // Prevent default behavior on all internal links
+		// // and give IE fallback.
+		// $(document).on('click', 'a[href^="/"', function(e) {
+		// 	var href = $(e.currentTarget).attr('href');
+
+		// 	// (?) chain 'or's for other black list routes.
+		// 	var passThrough = href.indexOf('sign_out') >= 0;
+
+		// 	// Allow shift+click for new tabs, etc.
+		// 	if (!passThrough && !event.altKey && !event.ctrlKey && !event.metaKey) {
+		// 		event.preventDefault();
+		// 	}
+
+		// 	// Remove leading slashes and hash bangs (backward compatibility)
+		// 	var url = href/replace(/^\//, '').replace('\#\!/', '');
+		// 	App.router.navigate(url, {trigger: true});
+		// });
 
 		// Expand checkbox.
 		$('.checkbox').on('click', function() {
@@ -74,26 +86,14 @@ App.Models.Config = Backbone.Model.extend({
 
 App.Models.Tune = Backbone.Model.extend({
 	urlRoot: '/next',
-	// defaults: {
-	// 	Tune: { id: '', name: '' },
-	// 	Book: {},
-	// 	Sample: {}
-	// },
-
+	
 	initialize: function() {
 		var self = this;
 
 		this.listenTo(self, 'add', function(model, collection, options) {
 			self.set('enabled_books', options.enabled_books);
 		});
-	},
-
-	// parse: function(response) {
-	// 	this.set('Tune.id', response.Tune.id);
-	// 	this.set('Tune.name', response.Tune.name);
-	// 	this.set('Book', response.Book);
-	// 	this.set('Sample', response.Sample);
-	// }
+	}
 });
 
 //------------------------
@@ -109,8 +109,6 @@ App.Collections.Tunes = Backbone.Collection.extend({
 // AppView: Top level view
 App.Views.AppView = Backbone.View.extend({
 	el: '#content',
-
-	// template: _.template($('#template-tunes').html()),
 
 	events: {
 		'click .btn-wpn': 'goNext'
@@ -134,10 +132,9 @@ App.Views.AppView = Backbone.View.extend({
 		var self = this;
 
 		this.collection.once('sync', function(model, response) {
-			console.log(model.toJSON());
 			self.render(response.Tune.id, model);
 		});
-		// this.render(id);
+
 		this.collection.create({}, {enabled_books: App.Configs.enabled_books});
 	},
 
@@ -209,14 +206,42 @@ App.Views.ConfigView = Backbone.View.extend({
 // Router
 //------------------------
 App.Router = Backbone.Router.extend({
-	// routes: {
-	// 	'tunes/view/:id': 'tunesView'		// #tunes/view/800
-	// },
+	routes: {
+		'next': 'next',
+		'tunes/view/:id': 'tunesView'
+	},
 
-	// tunesView: function(id) {
-	// 	console.info('tunesView');
-	// 	console.log('tunes/view/' + id);
-	// }
+	initialize: function() {
+		Backbone.history.start({pushState: true});
+
+		// Prevent default behavior on all internal links
+		// and give IE fallback.
+		$(document).on('click', 'a[href^="/"]', function(e) {
+			var href = $(e.currentTarget).attr('href');
+
+			// (?) chain 'or's for other black list routes.
+			var passThrough = href.indexOf('sign_out') >= 0;
+
+			// Allow shift+click for new tabs, etc.
+			if (!passThrough && !event.altKey && !event.ctrlKey && !event.metaKey) {
+				event.preventDefault();
+			}
+
+			// Remove leading slashes and hash bangs (backward compatibility)
+			var url = href.replace(/^\//, '').replace('\#\!/', '');
+			App.router.navigate(url, {trigger: true});
+		});
+	},
+
+	next: function() {
+		console.info('next');
+	},
+
+	tunesView: function(id) {
+		console.info('tunesView');
+		console.log('tunes/view/' + id);
+		// App.appView.render(id);
+	}
 
 });
 
