@@ -27,7 +27,7 @@
 				<div class="m-carousel-inner">
 				<?php foreach ($tune['Sample'] as $key => $sample): ?>
 					<div class="m-item">
-						<img src="<%= FULL_BASE_URL . '/' . IMAGES_URL . 'samples/' . $sample['thumbnail']} %>" alt="<%= $sample['title'] %>" style="width:100%">
+						<img src="<?= FULL_BASE_URL . '/' . IMAGES_URL . 'samples/' . $sample['thumbnail'] ?>" alt="<?= $sample['title'] ?>" style="width:100%">
 						<a href="http://www.youtube.com/embed/<?= $sample['url'] ?>" title="<?= $sample['title'] ?>" class="html5lightbox">
 							<?= $this->Html->para("m-caption", $sample['title']) ?>
 						</a>
