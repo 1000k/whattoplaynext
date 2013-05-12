@@ -70,15 +70,7 @@ App.Models.Tune = Backbone.Model.extend({
 });
 
 App.Models.RandomTune = Backbone.Model.extend({
-	urlRoot: '/next',
-	
-	initialize: function() {
-		var self = this;
-
-		this.listenTo(self, 'add', function(model, collection, options) {
-			self.set('enabled_books', options.enabled_books);
-		});
-	}
+	urlRoot: '/next'
 });
 
 //------------------------
@@ -96,10 +88,6 @@ App.Collections.Tunes = Backbone.Collection.extend({
 App.Views.AppView = Backbone.View.extend({
 	el: '#content',
 
-	// events: {
-	// 	'click .btn-wpn': '_goNext'
-	// },
-
 	initialize: function(options) {
 		_.bindAll(this, '_goNext', 'render', 'showContent');
 
@@ -114,6 +102,14 @@ App.Views.AppView = Backbone.View.extend({
 		this.listenTo(this.randomTune, 'sync', function(model, response) {
 			App.router.navigate('/tunes/view/' + model.get('tune_id'), {trigger: true, replace: true});
 		});
+
+		// this.listenTo(this.randomTune, 'all', function(type, model, collection, response) {
+		// 	console.info('RandomTune event fired.');
+		// 	console.log(type);
+		// 	console.log(model);
+		// 	console.log(collection);
+		// 	console.log(response);
+		// });
 
 		// this.listenTo(this.tunes, 'all', function(type, model, collection, response) {
 		// 	console.info('tunes event fired.');
@@ -161,11 +157,7 @@ App.Views.AppView = Backbone.View.extend({
 	},
 
 	_afterFetchTune: function(model, response) {
-		// console.log(model);
 		var tune = model.attributes.Tune;
-
-		// this.remove();
-		// this.undelegateEvents();
 
 		this.$tunes.html(this.template(model.toJSON()));
 
@@ -185,9 +177,10 @@ App.Views.AppView = Backbone.View.extend({
 	},
 
 	_goNext: function() {
-		var self = this;
-
-		this.randomTune.fetch();
+		this.randomTune.fetch({
+			data: {enabled_books: App.Configs.enabled_books},
+			type: 'post'
+		});
 	}
 
 });
@@ -197,10 +190,10 @@ App.Views.ConfigView = Backbone.View.extend({
 	el: '.drawers',
 
 	events: {
-		'click .checkbox': 'check'
+		'click .checkbox': 'onCheck'
 	},
 
-	initialize: function(options) {
+	initialize: function() {
 		this.model = new App.Models.Config();
 
 		_.bindAll(this, 'render');
@@ -217,7 +210,7 @@ App.Views.ConfigView = Backbone.View.extend({
 		);
 	},
 
-	check: function() {
+	onCheck: function() {
 		this.model.save({
 			enabled_books: this._getCheckedBoxes()
 		});

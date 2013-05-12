@@ -14042,11 +14042,7 @@ App.Views.AppView = Backbone.View.extend({
 	},
 
 	_afterFetchTune: function(model, response) {
-		// console.log(model);
 		var tune = model.attributes.Tune;
-
-		// this.remove();
-		// this.undelegateEvents();
 
 		this.$tunes.html(this.template(model.toJSON()));
 
@@ -14066,9 +14062,16 @@ App.Views.AppView = Backbone.View.extend({
 	},
 
 	_goNext: function() {
-		var self = this;
+		// var self = this;
+		console.info('_goNext');
+		console.log(this.randomTune.attributes);
 
-		this.randomTune.fetch();
+		this.randomTune.fetch({
+			data: {
+				enabled_books: this.randomTune.attributes.enabled_books;
+			},
+			type: 'post'
+		});
 	}
 
 });
