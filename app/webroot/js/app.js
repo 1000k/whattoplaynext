@@ -91,6 +91,10 @@ App.Collections.Tunes = Backbone.Collection.extend({
 App.Views.AppView = Backbone.View.extend({
 	el: '#content',
 
+	// events: {
+	// 	'click .btn-wpn': 'goNext'
+	// },
+
 	initialize: function(options) {
 		_.bindAll(this, 'goNext', 'render');
 
@@ -100,6 +104,11 @@ App.Views.AppView = Backbone.View.extend({
 	},
 
 	goNext: function() {
+		// if (!App.router.isPushStateSupported) {
+		// 	App.router.navigate('/next', {replace: true});
+		// 	return;
+		// }
+
 		$('#home').hide();
 		$('#tunes').hide().html('');
 		$('.spinner').show();
@@ -110,7 +119,7 @@ App.Views.AppView = Backbone.View.extend({
 			var tune = model.attributes.Tune;
 
 			self.$tunes.html(self.template(model.toJSON()));
-			App.router.navigate('/tunes/view/' + tune.id, {replace: true});
+			App.router.navigate('/tunes/view/' + tune.id, {trigger: true});
 			document.title = tune.name + ' | What to Play Next?';
 
 			self.render();
@@ -178,34 +187,47 @@ App.Views.ConfigView = Backbone.View.extend({
 //------------------------
 App.Router = Backbone.Router.extend({
 	routes: {
-		'next': 'next',
+		'': 'homeRoute',
+		'next': 'nextRoute',
 		'tunes/view/:id': 'tunesView'
 	},
 
 	initialize: function() {
 		var preventDefaultElems = '.btn-wpn';
-		var isPushStateEnabled = !!(window.history && window.history.pushState);
-		Backbone.history.start({pushState: isPushStateEnabled});
+		var isPushStateSupported = !!(window.history && window.history.pushState);
 
-		if (isPushStateEnabled) {
+		// Use pushState on supported browsers, and not supported,
+		// use full-load transitions (prevent to use hashbang).
+		Backbone.history.start({pushState: true, hashChange: false});
+		
+		$(window).on('popstate', function(e) {
+			console.log('onPopState triggered.');
+			console.log(e);
+		});
+
+		if (isPushStateSupported) {
 			$(document).on('click', preventDefaultElems, function (e) {
 				var href = $(this).attr('href');
 				var protocol = this.protocol + '//';
 				if (href.slice(protocol.length) !== protocol) {
 					e.preventDefault();
-					App.router.navigate(href, true);
+					App.router.navigate(href, {trigger: true});
 				}
 			});
 		}
 	},
 
-	next: function() {
-		// console.info('App.router.next');
+	homeRoute: function() {
+		console.info('App.router.homeRoute');
+	},
+
+	nextRoute: function() {
+		console.info('App.router.nextRoute');
 		App.appView.goNext();
 	},
 
 	tunesView: function(id) {
-		// console.info('App.router.tunesView');
+		console.info('App.router.tunesView');
 		// console.log('tunes/view/' + id);
 		App.appView.render();
 	}
