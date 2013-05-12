@@ -13947,6 +13947,10 @@ App.Models.Config = Backbone.Model.extend({
 });
 
 App.Models.Tune = Backbone.Model.extend({
+	urlRoot: '/tunes/view'
+});
+
+App.Models.RandomTune = Backbone.Model.extend({
 	urlRoot: '/next',
 	
 	initialize: function() {
@@ -13962,6 +13966,7 @@ App.Models.Tune = Backbone.Model.extend({
 // Collections
 //------------------------
 App.Collections.Tunes = Backbone.Collection.extend({
+	url: '/tunes/view',
 	model: App.Models.Tune
 });
 
@@ -13973,56 +13978,99 @@ App.Views.AppView = Backbone.View.extend({
 	el: '#content',
 
 	// events: {
-	// 	'click .btn-wpn': 'goNext'
+	// 	'click .btn-wpn': '_goNext'
 	// },
 
 	initialize: function(options) {
-		_.bindAll(this, 'goNext', 'render');
+		_.bindAll(this, '_goNext', 'render', 'showContent');
 
+		this.$home = this.$('#home');
 		this.$tunes = this.$('#tunes');
 		this.template = _.template($('#template-tunes').html());
-		this.collection = options.collection;
-	},
-
-	goNext: function() {
-		// if (!App.router.isPushStateSupported) {
-		// 	App.router.navigate('/next', {replace: true});
-		// 	return;
-		// }
-
-		$('#home').hide();
-		$('#tunes').hide().html('');
-		$('.spinner').show();
+		this.randomTune = new App.Models.RandomTune();
+		this.tunes = options.collection;
 
 		var self = this;
 
-		this.collection.on('sync', function(model, response) {
-			var tune = model.attributes.Tune;
-
-			self.$tunes.html(self.template(model.toJSON()));
-			App.router.navigate('/tunes/view/' + tune.id, {trigger: true});
-			document.title = tune.name + ' | What to Play Next?';
-
-			self.render();
+		this.listenTo(this.randomTune, 'sync', function(model, response) {
+			App.router.navigate('/tunes/view/' + model.get('tune_id'), {trigger: true, replace: true});
 		});
 
-		this.collection.create({}, {enabled_books: App.Configs.enabled_books});
+		// this.listenTo(this.tunes, 'all', function(type, model, collection, response) {
+		// 	console.info('tunes event fired.');
+		// 	console.log(type);
+		// 	console.log(model);
+		// 	console.log(collection);
+		// 	console.log(response);
+		// });
+
+		this.listenTo(this.tunes, 'add', function(model, response, options) {
+			self._afterFetchTune(model, response);
+		});
 	},
 
-	render: function() {
-		// console.info('App.Views.AppView.render');
-		$('#tunes').show();
-		$('#tunes').scrollTop(0);
-		$('.spinner').hide();
+	showContent: function(content, options) {
+		switch (content) {
+			case 'home':
+				this.$home.show();
+				this.$tunes.hide();
+				document.title = 'What To Play Next?';
+				break;
 
-		// Attach triggers on elements.
+			case 'next':
+				this.$home.hide();
+				$('#tunes').hide().html('');
+				$('.spinner').show();
+
+				this._goNext();
+
+				break;
+
+			case 'tunesView':
+				this.tunes.fetch({
+					url: this.collection.url + '/' + options.tune_id,
+					data: {id: options.tune_id},
+					type: 'post'
+				});
+				break;
+
+			default:
+				break;
+			
+			return this;
+		}
+	},
+
+	_afterFetchTune: function(model, response) {
+		// console.log(model);
+		var tune = model.attributes.Tune;
+
+		// this.remove();
+		// this.undelegateEvents();
+
+		this.$tunes.html(this.template(model.toJSON()));
+
+		App.router.navigate('/tunes/view/' + tune.id, {trigger: true, replace: true});
+
+		this.$home.hide();
+		this.$tunes.show();
+		this.$tunes.scrollTop(0);
+
+		$('.spinner').hide();
 		$(".m-carousel").carousel();
 		$(".html5lightbox").html5lightbox({
 			overlayopacity: 0.8
 		});
 
-		return this;
+		document.title = tune.name + ' | What To Play Next?';
+	},
+
+	_goNext: function() {
+		var self = this;
+
+		this.randomTune.fetch();
 	}
+
 });
 
 // Config view
@@ -14081,11 +14129,6 @@ App.Router = Backbone.Router.extend({
 		// use full-load transitions (prevent to use hashbang).
 		Backbone.history.start({pushState: true, hashChange: false});
 		
-		$(window).on('popstate', function(e) {
-			console.log('onPopState triggered.');
-			console.log(e);
-		});
-
 		if (isPushStateSupported) {
 			$(document).on('click', preventDefaultElems, function (e) {
 				var href = $(this).attr('href');
@@ -14099,18 +14142,18 @@ App.Router = Backbone.Router.extend({
 	},
 
 	homeRoute: function() {
-		console.info('App.router.homeRoute');
+		// console.info('App.router.homeRoute');
+		App.appView.showContent('home');
 	},
 
 	nextRoute: function() {
-		console.info('App.router.nextRoute');
-		App.appView.goNext();
+		// console.info('App.router.nextRoute');
+		App.appView.showContent('next');
 	},
 
 	tunesView: function(id) {
-		console.info('App.router.tunesView');
-		// console.log('tunes/view/' + id);
-		App.appView.render();
+		// console.info('App.router.tunesView ... id: ' + id);
+		App.appView.showContent('tunesView', {tune_id: id});
 	}
 
 });

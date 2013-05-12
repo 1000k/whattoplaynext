@@ -66,9 +66,8 @@ class TunesControllerTest extends ControllerTestCase {
 			]
 		);
 
-		$this->assertEquals($result['Tune'], $this->tuneFixture->records[0]);
-		$this->assertArrayHasKey('Book', $result);
-		$this->assertArrayHasKey('Sample', $result);
+		$this->assertTrue($result);
+		$this->assertEquals(1, $this->vars['result']['tune_id']);
 	}
 
 	private function __getMockedObjectSimulatingAjaxRequest($stub_tune_id) {

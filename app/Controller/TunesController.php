@@ -39,15 +39,13 @@ class TunesController extends AppController {
 
 	public function next() {
 		$enabled_books = isset($this->request->data['enabled_books']) ? $this->request->data['enabled_books'] : null;
+		$tune_id = $this->Tune->getIdAtRandom($enabled_books);
 
 		if ($this->RequestHandler->isAjax()) {
-			$tune_id = $this->Tune->getIdAtRandom($enabled_books);
-			$result = $this->Tune->findById($tune_id);
-
-			$this->set('result', $result);
+			$this->set('result', ['tune_id' => $tune_id]);
 			$this->set('_serialize', 'result');
 
-			return $result;
+			return true;
 		}
 
 		// return true;
