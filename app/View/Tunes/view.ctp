@@ -1,4 +1,4 @@
-<div id="tunes" class="scrollable drawer-swipable" style="display: block;">
+<div id="tunes">
 	<section class="title">
 		<?= $tune['Tune']['name'] ?>
 	</section>
@@ -53,5 +53,5 @@
 		<?= $this->element('link-back-to-home') ?>
 	</footer>
 </div>
-<?= $this->element('templates/tunes') ?>
 
+<?= $this->element('templates/tunes') ?>

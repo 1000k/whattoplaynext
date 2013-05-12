@@ -92,56 +92,77 @@ App.Views.AppView = Backbone.View.extend({
 	el: '#content',
 
 	// events: {
-	// 	'click .btn-wpn': 'goNext'
+	// 	'click .btn-wpn': '_goNext'
 	// },
 
 	initialize: function(options) {
-		_.bindAll(this, 'goNext', 'render');
+		_.bindAll(this, '_goNext', 'render', 'showContent');
 
+		this.$home = this.$('#home');
 		this.$tunes = this.$('#tunes');
 		this.template = _.template($('#template-tunes').html());
 		this.collection = options.collection;
 	},
 
-	goNext: function() {
-		// if (!App.router.isPushStateSupported) {
-		// 	App.router.navigate('/next', {replace: true});
-		// 	return;
-		// }
+	showContent: function(content, options) {
+		switch (content) {
+			case 'home':
+				this.$home.show();
+				this.$tunes.hide();
+				document.title = 'What To Play Next?';
+				break;
 
-		$('#home').hide();
-		$('#tunes').hide().html('');
-		$('.spinner').show();
+			case 'next':
+				this.$home.hide();
+				$('#tunes').hide().html('');
+				$('.spinner').show();
 
+				this._goNext();
+
+				break;
+
+			case 'tunesView':
+				this.$home.hide();
+				this.$tunes.show();
+				this.$tunes.scrollTop(0);
+
+				$('.spinner').hide();
+				$(".m-carousel").carousel();
+				$(".html5lightbox").html5lightbox({
+					overlayopacity: 0.8
+				});
+
+				console.log(this.collection.length);
+				var hit = _.filter(this.collection.models, function(model) { 
+					return model.attributes.Tune.id == options.tune_id
+				});
+
+				if (hit.length > 0) {
+					document.title = hit[0].attributes.Tune.name + ' | What To Play Next?';
+				}
+
+				break;
+
+			default:
+				break;
+			
+			return this;
+		}
+	},
+
+	_goNext: function() {
 		var self = this;
 
 		this.collection.on('sync', function(model, response) {
 			var tune = model.attributes.Tune;
 
 			self.$tunes.html(self.template(model.toJSON()));
-			App.router.navigate('/tunes/view/' + tune.id, {trigger: true});
-			document.title = tune.name + ' | What to Play Next?';
-
-			self.render();
+			App.router.navigate('/tunes/view/' + tune.id, {trigger: true, replace: true});
 		});
 
 		this.collection.create({}, {enabled_books: App.Configs.enabled_books});
-	},
-
-	render: function() {
-		// console.info('App.Views.AppView.render');
-		$('#tunes').show();
-		$('#tunes').scrollTop(0);
-		$('.spinner').hide();
-
-		// Attach triggers on elements.
-		$(".m-carousel").carousel();
-		$(".html5lightbox").html5lightbox({
-			overlayopacity: 0.8
-		});
-
-		return this;
 	}
+
 });
 
 // Config view
@@ -200,11 +221,6 @@ App.Router = Backbone.Router.extend({
 		// use full-load transitions (prevent to use hashbang).
 		Backbone.history.start({pushState: true, hashChange: false});
 		
-		$(window).on('popstate', function(e) {
-			console.log('onPopState triggered.');
-			console.log(e);
-		});
-
 		if (isPushStateSupported) {
 			$(document).on('click', preventDefaultElems, function (e) {
 				var href = $(this).attr('href');
@@ -219,17 +235,17 @@ App.Router = Backbone.Router.extend({
 
 	homeRoute: function() {
 		console.info('App.router.homeRoute');
+		App.appView.showContent('home');
 	},
 
 	nextRoute: function() {
 		console.info('App.router.nextRoute');
-		App.appView.goNext();
+		App.appView.showContent('next');
 	},
 
 	tunesView: function(id) {
-		console.info('App.router.tunesView');
-		// console.log('tunes/view/' + id);
-		App.appView.render();
+		console.info('App.router.tunesView ... id: ' + id);
+		App.appView.showContent('tunesView', {tune_id: id});
 	}
 
 });

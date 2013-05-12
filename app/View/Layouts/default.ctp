@@ -38,6 +38,15 @@
 		<?= $this->element('btn-drawer-trigger') ?>
 		<span class="spinner"></span>
 
+		<div id="home">
+			<div class="home-wrapper">
+				<div class="home-wrapper-inner">
+					<?= $this->element('btn-wpn') ?>
+				</div>
+			</div>
+			<?= $this->element('footer') ?>
+		</div>
+
 		<?= $this->fetch('content') ?>
 	</div>
 

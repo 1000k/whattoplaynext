@@ -72,7 +72,7 @@ class PagesController extends AppController {
 	}
 
 	public function index() {
-		$this->set('title_for_layout', 'What to Play Next?');
+		$this->set('title_for_layout', 'What To Play Next?');
 		$this->render('home');
 	}
 }

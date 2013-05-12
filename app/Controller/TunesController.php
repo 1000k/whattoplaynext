@@ -28,7 +28,7 @@ class TunesController extends AppController {
 
 		$this->set([
 			'tune' => $tune,
-			'title_for_layout' => $tune['Tune']['name'] . ' | What to Play Next?'
+			'title_for_layout' => $tune['Tune']['name'] . ' | What To Play Next?'
 		]);
 
 		if ($this->RequestHandler->isAjax()) {
