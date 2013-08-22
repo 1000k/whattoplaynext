@@ -116,4 +116,6 @@ Configure::write('Cookie', [
 	'httpOnly' => true,
 ]);
 
+Configure::write('YouTube.max_search_result', 10);
+
 CakePlugin::load(['DebugKit', 'Migrations']);

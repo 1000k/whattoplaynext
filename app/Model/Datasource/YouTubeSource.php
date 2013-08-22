@@ -8,10 +8,6 @@ App::import('Vendor', 'Google_YoutubeService', ['file' => 'google-api-php-client
  * Currently only the `read` function is implemented.
  */
 class YouTubeSource extends DataSource {
-/**
- * @const int Max number of search result
- */
-	const MAX_SEARCH_RESULTS = 5;
 
 /**
  * An optional description of your datasource
@@ -66,7 +62,7 @@ class YouTubeSource extends DataSource {
 				'id,snippet',
 				[
 					'q' => $queryData['conditions']['q'],
-					'maxResults' => self::MAX_SEARCH_RESULTS,
+					'maxResults' => Configure::read('YouTube.max_search_result')
 				]
 			);
 
