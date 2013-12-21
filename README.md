@@ -18,4 +18,6 @@ Set up the environment by the following:
 $ sudo npm install -g grunt-cli
 $ cd {APP_ROOT}
 $ npm install --save-dev
+$ sudo gem install sass -v 3.2.10
+$ sudo gem install compass
 ```

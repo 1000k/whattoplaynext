@@ -1,6 +1,33 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    // Note: gem sass 3.2.11 & 3.2.12 is broken so you should use
+    // SASS 3.2.10 with `sudo gem install sass -v 3.2.10`
+    compass: {
+      dist: {
+        options: {
+          sassDir: 'app/webroot/sass',
+          cssDir: 'app/webroot/css'
+        }
+      }
+    },
+    cssmin: {
+      add_banner: {
+        options: {
+          banner: '/* Workers board screen CSS */'
+        },
+        files: {
+          'app/webroot/css/wpn.min.css': ['app/webroot/css/wpn.css']
+        }
+      },
+      minify: {
+        expand: true,
+        cwd: 'app/css/',
+        src: ['*.css', '!*.min.css'],
+        dest: 'app/webroot/css/',
+        ext: '.min.css',
+      }
+    },
     concat: {
       options: {
         separator: ';'
@@ -44,11 +71,22 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      files: ['<%= jshint.files %>'],
-      tasks: ['concat', 'uglify']
+      options: {
+        spawn: false
+      },
+      scripts: {
+        files: ['<%= jshint.files %>'],
+        tasks: ['concat', 'uglify']
+      },
+      css: {
+        files: ['app/webroot/sass/*.scss'],
+        tasks: ['compass', 'cssmin']
+      }
     }
   });
 
+  grunt.loadNpmTasks('grunt-contrib-compass');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-qunit');
