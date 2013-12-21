@@ -76,4 +76,9 @@ class DATABASE_CONFIG {
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
+
+        public $youtube = [
+                'datasource' => 'YouTubeSource',
+                'apiKey' => 'PleaseInsertYouTubeApiKey'
+        ];
 }
