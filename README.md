@@ -14,6 +14,8 @@ For Developers
 --------------
 Set up the environment by the following:
 
-1. `sudo npm install -g grunt-cli`
-1. `$ cd {app_root}`
-1. '$ npm install grunt --save-dev'
+```
+$ sudo npm install -g grunt-cli
+$ cd {APP_ROOT}
+$ npm install --save-dev
+```
