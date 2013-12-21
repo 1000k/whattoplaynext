@@ -14,7 +14,7 @@ module.exports = function(grunt) {
     cssmin: {
       add_banner: {
         options: {
-          banner: '/* Workers board screen CSS */'
+          banner: '/* What to Play Next? - screen CSS */'
         },
         files: {
           'app/webroot/css/wpn.min.css': ['app/webroot/css/wpn.css']
@@ -22,7 +22,7 @@ module.exports = function(grunt) {
       },
       minify: {
         expand: true,
-        cwd: 'app/css/',
+        cwd: 'app/webroot/css/',
         src: ['*.css', '!*.min.css'],
         dest: 'app/webroot/css/',
         ext: '.min.css',

@@ -9,7 +9,7 @@
 	.thumbnail {
 		@include leader;
 		&:hover {
-			background: $secondary-b-darkest;
+			background: $secondary-b-brighter;
 		}
 		&:active {
 			background: $secondary-b-brightest;

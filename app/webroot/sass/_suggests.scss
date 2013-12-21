@@ -12,10 +12,11 @@ section {
 }
 
 .title {
-	color: #000;
+	color: $title-text-color;
 	background: $title-background-color;
-	font-weight: bold;
+	// font-weight: bold;
 	
+	font-family: $title-font-family;
 	font-size: $title-font-size-default;
 	line-height: $title-font-size-default;
 

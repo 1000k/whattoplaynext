@@ -7,7 +7,7 @@
 	<?php
 		echo $this->Html->meta('icon');
 		echo $this->Html->css([
-			'wpn',
+			'wpn.min',
 			'carousel.min',
 			'carousel-style.min'
 		]);
