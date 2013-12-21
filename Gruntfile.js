@@ -14,7 +14,7 @@ module.exports = function(grunt) {
           'app/webroot/js/vendor/backbone.localStorage/backbone.localStorage.js',
           'app/webroot/js/vendor/hook/hook.js',
           'app/webroot/js/vendor/mobify-modules/carousel/src/carousel.js',
-          // 'app/webroot/js/vendor/html5lightbox.js',
+          'app/webroot/js/vendor/html5lightbox.js',
           'app/webroot/js/vendor/snap/snap.js',
           'app/webroot/js/app.js'
         ],

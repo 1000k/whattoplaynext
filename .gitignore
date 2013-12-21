@@ -1,7 +1,7 @@
 # User specific & automatically generated files #
 #################################################
 .sass-cache/
-#/app/Config/database.php
+/app/Config/database.php
 /app/tmp
 /app/webroot/img/samples/*
 /build
